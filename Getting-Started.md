@@ -17,7 +17,7 @@ Now run the following commands:
 3. git pull origin master (this is how you copy what is currently in our repository so that you are up to date with the latest changes).
 4. git add "file_of_some_sort" (this tells git that you are **planning** to commit this file to the repository. Obviously, point to a real file. I encourage you to try and use an empty class if this is your first time).
 5. git status (tells you which files you have in your "stage". The stage is where all the files that you are planning to commit. This is more of a sanity check to make sure that you are committing the right files).
-6. git commit -m "Some message" (Despite what the name suggests, this is not where you send the files to the repo. This is just to comment on the changes that you made. It is recommended that you **always** comment the changes with some sort of text)
+6. git commit -m "Some message" (Despite what the name suggests, this is not how you send the files to the repo. This is just to comment on the changes that you made. It is recommended that you **always** comment the changes with some sort of text)
 7. git push -u origin master (this is where shit gets real. This is the command that will submit the stage changes to the repo. It will ask for your username and password).
 
 
