@@ -10,5 +10,5 @@ package coe528.project;
  * @author Emil
  */
 public class ShoppingCart {
-    
+   
 }
