@@ -14,7 +14,7 @@ Find a place on your computer to create a workspace. A workspace is what I call 
 Now run the following commands:
 1. git init (this will initialize a hidden folder inside the workspace which will help git keep track of your commits)
 2. git remote add origin https://github.com/Lorsh/shpcart.git (**IMPORTANT: IF YOU ARE COPYING THIS DIRECTLY TO THE TERMINAL, MAKE SURE TO REMOVE THE SPACE BETWEEN origin and https:// and make your own space. For some reason it created a special character in my terminal which caused a bunch of weird issues.**)
-3. git pull origin master (here we are going to copy what is currently in our repository so that we are up to date with the latest changes)
+3. git pull origin master (this is how you copy what is currently in our repository so that you are up to date with the latest changes).
 4. git add "file_of_some_sort" (this tells git that you are **planning **to commit this file to the repository. Obviously, point to a real file. I encourage you to try and use an empty class if this is your first time).
 5. git status (tells you which files you have in your "stage". The stage is where all the files that you are planning to commit. This is more of a sanity check to make sure that you are committing the right files).
 6. git commit -m "Some message" (Despite what the name suggests, this is not where you send the files to the repo. This is just to comment on the changes that you made. It is recommended that you **always** comment the changes with some sort of text)
