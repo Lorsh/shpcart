@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Catalog {
 
-    private ArrayList<Item> items;
+    private ArrayList<Item> items = new ArrayList<Item>();
 
     private Catalog catalog;
 
