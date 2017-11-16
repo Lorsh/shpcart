@@ -56,7 +56,10 @@ public class Catalog {
      
     
     }
-     
+    /** MODIFIES: instance variable
+        EFFECTS: Creates an instance of Catalog in the Catalog class if it doesn't exist already.
+    
+    **/
        public static Catalog getInstance()  {
         if (instance == null) {
             try {
@@ -68,7 +71,10 @@ public class Catalog {
         return instance;
     }  
      
-
+    /** MODIFIES: none
+        EFFECTS: Updates the file in which it stores the state of items arrayList.
+    
+    **/
      public void update() throws IOException{
     
     FileOutputStream fho = new FileOutputStream (fileName);
@@ -76,6 +82,11 @@ public class Catalog {
     oos.writeObject(items);
     oos.close();
     }   
+     
+     /** MODIFIES: items arrayList
+        EFFECTS: Removes an item from arrayList if it exists and updates the file.
+    
+    **/
      
     public void removeItemFromCatalog (int productID) throws IOException,ArrayIndexOutOfBoundsException {
     items.remove(items.indexOf(getItem(productID)));
@@ -87,6 +98,12 @@ public class Catalog {
     }
     }
      
+    /** MODIFIES: none
+        EFFECTS: returns true if itmID exists in items arrayList.
+    
+    **/
+    
+    
     public boolean checkItemExist(int itmID){
     for (Item item : items){
         if (item.getProductID() == itmID) {
@@ -96,6 +113,13 @@ public class Catalog {
     }
     return false;
     }
+    
+    /** MODIFIES: none
+        EFFECTS: returns Item object corresponding to the itmID if it exists. 
+    
+    **/
+    
+    
     public Item getItem (int itmID) {
     if (checkItemExist(itmID)){
     Item item = new Item (itmID);
@@ -106,7 +130,14 @@ public class Catalog {
     return null;
     }
     }
-    public void addProfileToCatalog(Item item) throws IOException {
+    
+        /** MODIFIES: items arrayList
+        EFFECTS: adds Item to items arrayList and updates the file.
+    
+    **/
+    
+    
+    public void addItemToCatalog(Item item) throws IOException {
     if (!checkItemExist(item.getProductID())){
     items.add(item);
     update();
@@ -122,4 +153,21 @@ public class Catalog {
     }
     }
     
+    
+      public boolean repOK() { 
+        // EFFECTS: Returns true if the rep invariant holds for this    
+        //          object; otherwise returns false    
+        // c) Write the code for the repOK() here 
+        for (int i=0; i< items.size();i++) { //get i_th element in arraylist
+            Item org = items.get(i);
+            for (int j=i+1; j< items.size();j++) { //go through all the next elements in the arraylist to make sure that items[i] doesnt appear in any of them.
+                Item compare_with = items.get(j);
+                if (org.equals(compare_with)) {
+                    return false;
+                }
+                
+            }
+        }
+        return true;
+        }
 }

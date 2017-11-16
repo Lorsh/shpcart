@@ -106,14 +106,28 @@ public class CatalogTest {
     }
 
     /**
-     * Test of addProfileToCatalog method, of class Catalog.
+     * Test of addItemToCatalog method, of class Catalog.
      */
     @Test
-    public void testAddProfileToCatalog() throws Exception {
-        System.out.println("addProfileToCatalog");
+    public void testAddItemToCatalog() throws Exception {
+        System.out.println("addItemToCatalog");
         Item item = null;
         Catalog instance = null;
-        instance.addProfileToCatalog(item);
+        instance.addItemToCatalog(item);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of repOK method, of class Catalog.
+     */
+    @Test
+    public void testRepOK() {
+        System.out.println("repOK");
+        Catalog instance = null;
+        boolean expResult = false;
+        boolean result = instance.repOK();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
