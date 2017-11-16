@@ -2,7 +2,7 @@
 
 <ClassDiagram name="coe528.project">
   <ClassDiagramComponents>
-    <Class name="Catalog" package="coe528.project" visibility="public" xPosition="114.0" yPosition="69.0">
+    <Class name="Catalog" package="coe528.project" visibility="public" xPosition="106.0" yPosition="43.0">
       <Fields>
         <Field name="items" type="ArrayList&lt;Item&gt;" visibility="private"/>
         <Field name="catalog" type="Catalog" visibility="private"/>
@@ -22,12 +22,14 @@
         <Method name="getItem" returnType="Item" visibility="public">
           <Argument type="int" name="itmID"/>
         </Method>
-        <Method name="addProfileToCatalog" returnType="void" visibility="public">
+        <Method name="addItemToCatalog" returnType="void" visibility="public">
           <Argument type="Item" name="item"/>
         </Method>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Customer" package="coe528.project" visibility="public" xPosition="114.0" yPosition="345.0">
+    <Class name="Customer" package="coe528.project" visibility="public" xPosition="92.0" yPosition="388.0">
       <Fields>
         <Field name="name" type="String" visibility="private"/>
         <Field name="address" type="String" visibility="private"/>
@@ -41,9 +43,11 @@
       </Constructors>
       <Methods>
         <Method name="login" returnType="void" visibility="public"/>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Item" package="coe528.project" visibility="public" xPosition="549.0" yPosition="31.0">
+    <Class name="Item" package="coe528.project" visibility="public" xPosition="549.0" yPosition="24.0">
       <Fields>
         <Field name="name" type="String" visibility="private"/>
         <Field name="condition" type="String" visibility="private"/>
@@ -55,6 +59,8 @@
       </Constructors>
       <Methods>
         <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public"/>
       </Methods>
     </Class>
     <Class name="Order" package="coe528.project" visibility="public" xPosition="521.0" yPosition="259.0">
@@ -77,6 +83,8 @@
         <Method name="placeOrder" returnType="void" visibility="public"/>
         <Method name="setOrderState" returnType="OrderState" visibility="public"/>
         <Method name="calculateTotal" returnType="double" visibility="public"/>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
     <Class name="ShippingInfo" package="coe528.project" visibility="public" xPosition="393.0" yPosition="674.0">
@@ -91,6 +99,7 @@
       <Methods>
         <Method name="updateShippingInfo" returnType="void" visibility="public"/>
         <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
       </Methods>
     </Class>
     <Class name="ShoppingCart" package="coe528.project" visibility="public" xPosition="914.0" yPosition="43.0">
@@ -107,6 +116,8 @@
         <Method name="updateQuantity" returnType="void" visibility="public"/>
         <Method name="viewCartDetails" returnType="void" visibility="public"/>
         <Method name="calculateSub" returnType="void" visibility="public"/>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
       </Methods>
     </Class>
     <Class name="OverThreshold" package="coe528.project" visibility="public" xPosition="1190.0" yPosition="373.0">
