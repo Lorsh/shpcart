@@ -37,6 +37,7 @@
         <Field name="creditCardInfo" type="String" visibility="private"/>
         <Field name="shippingInfo" type="ShippingInfo" visibility="private"/>
         <Field name="accountBalance" type="double" visibility="private"/>
+        <Field name="shoppingcart" type="ShoppingCart" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public"/>
@@ -63,7 +64,7 @@
         <Method name="equals" returnType="boolean" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Order" package="coe528.project" visibility="public" xPosition="521.0" yPosition="259.0">
+    <Class name="Order" package="coe528.project" visibility="public" xPosition="521.0" yPosition="274.0">
       <Fields>
         <Field name="orderID" type="int" visibility="private"/>
         <Field name="dataGen" type="Calendar" visibility="private"/>
@@ -115,9 +116,10 @@
         <Method name="checkOut" returnType="void" visibility="public"/>
         <Method name="updateQuantity" returnType="void" visibility="public"/>
         <Method name="viewCartDetails" returnType="void" visibility="public"/>
-        <Method name="calculateSub" returnType="void" visibility="public"/>
+        <Method name="calculateSub" returnType="double" visibility="public"/>
         <Method name="repOK" returnType="boolean" visibility="public"/>
         <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="totalShoppingNumber" returnType="int" visibility="public"/>
       </Methods>
     </Class>
     <Class name="OverThreshold" package="coe528.project" visibility="public" xPosition="1190.0" yPosition="373.0">
@@ -145,12 +147,14 @@
     </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="infor" source="coe528.project.Customer" target="coe528.project.ShippingInfo" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="cust" source="coe528.project.Order" target="coe528.project.Customer" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="items" source="coe528.project.Catalog" target="coe528.project.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Item&gt;"/>
     <HasRelation name="info" source="coe528.project.Order" target="coe528.project.ShippingInfo" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="catalog" source="coe528.project.Catalog" target="coe528.project.Catalog" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="items" source="coe528.project.Catalog" target="coe528.project.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Item&gt;"/>
     <HasRelation name="items" source="coe528.project.ShoppingCart" target="coe528.project.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Item&gt;"/>
+    <HasRelation name="cust" source="coe528.project.Order" target="coe528.project.Customer" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="catalog" source="coe528.project.Catalog" target="coe528.project.Catalog" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="infor" source="coe528.project.Customer" target="coe528.project.ShippingInfo" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="has" source="coe528.project.ShoppingCart" target="coe528.project.Order" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="shop" source="coe528.project.Customer" target="coe528.project.ShoppingCart" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="coe528.project.OverThreshold" target="coe528.project.OrderState"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="coe528.project.UnderThreshold" target="coe528.project.OrderState"/>
   </ClassDiagramRelations>
