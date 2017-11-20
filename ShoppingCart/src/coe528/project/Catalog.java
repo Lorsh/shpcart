@@ -17,12 +17,11 @@ public class Catalog {
     // The abstraction function is: 
     // a) Write the abstraction function here 
     //  AF(c) : An ArrayList of unique Items
-    //  top = items[n-1], where n is the size of the array.
     // 
     // 
     // The rep invariant is:  
     // b) Write the rep invariant here 
-    //  c.items[x] != c.items[y] for every integer x and y where x != y
+    //  c.items.purchaseID != c.items.purhcaseID for every integer x and y where x != y
     //  
     //  
     // 
@@ -33,7 +32,7 @@ public class Catalog {
     private static Catalog instance;
     private final String fileName = "catalog.txt";
     
-     private Catalog () throws FileNotFoundException {
+    private Catalog () throws FileNotFoundException {
     try {
     FileInputStream fhi = new FileInputStream(fileName);
     ObjectInputStream ois = new ObjectInputStream(fhi);
@@ -44,14 +43,7 @@ public class Catalog {
     }
     catch (IOException d) {
         //This is where you put the initial items in the store:
-        
-        
-        
-        try {
-            update();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        update();
     }
      
     
@@ -75,12 +67,16 @@ public class Catalog {
         EFFECTS: Updates the file in which it stores the state of items arrayList.
     
     **/
-     public void update() throws IOException{
-    
+     public void update(){
+    try {
     FileOutputStream fho = new FileOutputStream (fileName);
     ObjectOutputStream oos = new ObjectOutputStream (fho);
     oos.writeObject(items);
     oos.close();
+    }
+    catch (IOException e) {
+    System.err.println("IO exception found");
+    }
     }   
      
      /** MODIFIES: items arrayList
@@ -88,25 +84,35 @@ public class Catalog {
     
     **/
      
-    public void removeItemFromCatalog (int productID) throws IOException,ArrayIndexOutOfBoundsException {
+    public void removeItemFromCatalog (int productID){
+    try {
     items.remove(items.indexOf(getItem(productID)));
     update();
-    if (!checkItemExist(productID)) {
+    }
+    catch (ArrayIndexOutOfBoundsException e) {
+     System.err.println("Array out of bounds exception");
+    }
+    finally {
+     if (!checkItemExist(productID)) {
         System.out.println("Item " + productID + " was successfuly deleted");
     } else {
        System.err.println("Item " + productID + " was not deleted");
     }
     }
+            
+            
+    }
+    
      
     /** MODIFIES: none
-        EFFECTS: returns true if itmID exists in items arrayList.
+        EFFECTS: returns true if itemID exists in items arrayList.
     
     **/
     
     
-    public boolean checkItemExist(int itmID){
+    public boolean checkItemExist(int itemID){
     for (Item item : items){
-        if (item.getProductID() == itmID) {
+        if (item.getProductID() == itemID) {
             return true;
         }
         
@@ -119,16 +125,23 @@ public class Catalog {
     
     **/
     
+    public void clear(){
+    items.clear();
+    update();
     
-    public Item getItem (int itmID) {
-    if (checkItemExist(itmID)){
-    Item item = new Item (itmID);
-    int index= items.indexOf(item);
-    return items.get(index);
     }
-    else {
+    public Item getItem (int itemID) {
+    int index;
+    if (checkItemExist(itemID)) {
+        for (Item x : items) {
+            if (x.getProductID() == itemID) {
+                return x;
+            }
+        }
+    
+    }
     return null;
-    }
+    
     }
     
         /** MODIFIES: items arrayList
@@ -137,32 +150,33 @@ public class Catalog {
     **/
     
     
-    public void addItemToCatalog(Item item) throws IOException {
+    public void addItemToCatalog(Item item) {
     if (!checkItemExist(item.getProductID())){
     items.add(item);
     update();
     if (checkItemExist(item.getProductID())) {
-    System.out.println("User was successfuly created");
-     }
+    System.out.println("Item was successfuly created");
+    }
     else {
-    System.err.println("user " + item.getProductID() + " was not created");
+    System.err.println("item " + item.getProductID() + " was not created");
     }
     }
     else {
-    System.err.println("User already exists");
+    System.err.println("item already exists");
     }
     }
     
+         /** MODIFIES: none
+        EFFECTS: Returns true if the rep invariant holds for this    
+                 object; otherwise returns false
     
+    **/
       public boolean repOK() { 
-        // EFFECTS: Returns true if the rep invariant holds for this    
-        //          object; otherwise returns false    
-        // c) Write the code for the repOK() here 
         for (int i=0; i< items.size();i++) { //get i_th element in arraylist
             Item org = items.get(i);
             for (int j=i+1; j< items.size();j++) { //go through all the next elements in the arraylist to make sure that items[i] doesnt appear in any of them.
                 Item compare_with = items.get(j);
-                if (org.equals(compare_with)) {
+                if (org.getProductID() == compare_with.getProductID()) {
                     return false;
                 }
                 

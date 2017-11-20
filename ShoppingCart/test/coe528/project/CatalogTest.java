@@ -5,6 +5,7 @@
  */
 package coe528.project;
 
+import java.io.FileNotFoundException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,48 +19,27 @@ import static org.junit.Assert.*;
  */
 public class CatalogTest {
     
-    public CatalogTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
-    /**
-     * Test of getInstance method, of class Catalog.
-     */
-    @Test
-    public void testGetInstance() {
-        System.out.println("getInstance");
-        Catalog expResult = null;
-        Catalog result = Catalog.getInstance();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
+  
     /**
      * Test of update method, of class Catalog.
      */
     @Test
-    public void testUpdate() throws Exception {
+    public void testUpdate()  {
         System.out.println("update");
-        Catalog instance = null;
+        Catalog instance;
+        instance = Catalog.getInstance();
+        instance.clear();
+        int itemID = 3;
+        Item item3 = new Item(itemID);
+        instance.addItemToCatalog(item3);  
         instance.update();
+        instance = null;  // hopefully this destroys the only object available
+        instance = Catalog.getInstance(); // here we are creating a new object, with all the items being picked up from the file.
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true,instance.checkItemExist(itemID));
+        
     }
 
     /**
@@ -69,10 +49,17 @@ public class CatalogTest {
     public void testRemoveItemFromCatalog() throws Exception {
         System.out.println("removeItemFromCatalog");
         int productID = 0;
-        Catalog instance = null;
-        instance.removeItemFromCatalog(productID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Item item = new Item(productID);
+        Catalog instance = Catalog.getInstance();
+        instance.clear();
+        instance.addItemToCatalog(item);
+        if (instance.checkItemExist(productID)) {
+            instance.removeItemFromCatalog(productID);
+            assertEquals(false,instance.checkItemExist(productID));
+        }
+        else {
+            fail("Item was not added properly");
+        }
     }
 
     /**
@@ -81,28 +68,33 @@ public class CatalogTest {
     @Test
     public void testCheckItemExist() {
         System.out.println("checkItemExist");
-        int itmID = 0;
-        Catalog instance = null;
-        boolean expResult = false;
-        boolean result = instance.checkItemExist(itmID);
-        assertEquals(expResult, result);
+        int itemID = 0;
+        Item item = new Item(itemID);
+        Catalog instance = Catalog.getInstance();
+        instance.clear();
+        instance.addItemToCatalog(item);
+        boolean result = instance.checkItemExist(itemID);
+        assertEquals(true, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getItem method, of class Catalog.
      */
+    
+    
+    
     @Test
     public void testGetItem() {
         System.out.println("getItem");
         int itmID = 0;
-        Catalog instance = null;
-        Item expResult = null;
+        Item item = new Item(itmID);
+        Catalog instance = Catalog.getInstance();
+        instance.clear();
+        instance.addItemToCatalog(item);
         Item result = instance.getItem(itmID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, result.equals(item));
+        
     }
 
     /**
@@ -111,11 +103,13 @@ public class CatalogTest {
     @Test
     public void testAddItemToCatalog() throws Exception {
         System.out.println("addItemToCatalog");
-        Item item = null;
-        Catalog instance = null;
+        int itemID = 1;
+        Item item = new Item(itemID);
+        Catalog instance = Catalog.getInstance();
         instance.addItemToCatalog(item);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true,instance.checkItemExist(itemID));
+        
     }
 
     /**
@@ -124,12 +118,18 @@ public class CatalogTest {
     @Test
     public void testRepOK() {
         System.out.println("repOK");
-        Catalog instance = null;
-        boolean expResult = false;
+        Catalog instance = Catalog.getInstance();
+        instance.clear();
+        Item item1 = new Item(0);
+        instance.addItemToCatalog(item1);
+        Item item2 = new Item(1);
+        instance.addItemToCatalog(item2);
+        Item item3 = new Item(2);
+        instance.addItemToCatalog(item3);
+        Item item4 = new Item(3);
+        instance.addItemToCatalog(item4);
         boolean result = instance.repOK();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, result);
     }
     
 }

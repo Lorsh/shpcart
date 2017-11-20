@@ -12,6 +12,8 @@ public class Customer {
 
     private ShippingInfo shippingInfo;
 
+    private ShoppingCart shpCart;
+            
     private double accountBalance;
 
     private Order order;
