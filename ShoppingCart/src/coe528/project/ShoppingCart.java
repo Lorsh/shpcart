@@ -1,6 +1,6 @@
 package coe528.project;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 public class ShoppingCart {
@@ -17,8 +17,7 @@ public class ShoppingCart {
         this.items = new ArrayList<Item>(); 
         this.shoppingID = shoppingID;
         this.subtotal = subtotal;
-        
-        
+
     }
     public int getshoppingID(){
         return shoppingID; // getting the ID of the item
@@ -30,7 +29,7 @@ public class ShoppingCart {
     }
     public double getsubtotal(){
     double x = 0;
-//summation of all the item
+    //summation of all the item
     for(int i=0;i<items.size() ;i++){
         x = items.get(shoppingID).getPrice();
         subtotal = subtotal + x;
@@ -43,21 +42,48 @@ public class ShoppingCart {
        Order y = new Order();
         
     }
-
-    public void updateQuantity(Catalog n) { //take the reference of the item from the shopping chart and put that into the chopping chart
-        // find reference of item in the catalog. If they matches 
-        int currentId;
-        for(int i=0;i<items.size(); i++){
-        currentId = items.get(i).getProductID();
-        try{
-        n.removeItemFromCatalog(currentId);
-        }
-        catch(IOException e)
-                {
-                    System.out.println("Invalid ID of the Item");
-                }
+    public void removeFromShoppingCart(Item item) {
+        catalog.addItemToCatalog(item);
+        if (catalog.checkItemExist(item.getProductID())) {
+            items.remove(item);
         }
     }
+    public void updateQuantity(int x, Item item) { //take the reference of the item from the shopping chart and put that into the chopping chart
+        int accum = 0;
+        int changes = 0;
+        for (Item c : items) {
+            if (c.equals(item)) {
+                accum++;
+            }
+        }
+        if (x - accum > 0) { //add items
+            while (x > accum) {
+                addtoShoppingCart(catalog.getItem(item.getName(), item.getCondition()));
+                accum++;
+                changes++;
+            }
+            if (changes == 1) {
+                System.out.println(changes + " more item was added");
+            } else {
+                System.out.println(changes + " more items were added");
+            }
+        } else if (x - accum < 0) { // remove items
+            while (x < accum) {
+                removeFromShoppingCart(catalog.getItem(item.getName(), item.getCondition()));
+                accum--;
+                changes++;
+            }
+            if (changes == 1) {
+                System.out.println(changes + " more item was removed");
+            } else {
+                System.out.println(changes + " more items were removed");
+            }
+        } else {
+            System.out.println("No change was made");
+        }
+
+    }
+    
     
     public int TotalShoppingNumber(){
         return (items.size());
@@ -69,7 +95,7 @@ public class ShoppingCart {
     }
 // adding TAX (HST) to the SubTotal
     public double calculateSub() {
-        double m = ((0.13*(subtotal))+subtotal);
+        double m = ((1.13*(subtotal)));
         return m;
     }
     public String toString() {
