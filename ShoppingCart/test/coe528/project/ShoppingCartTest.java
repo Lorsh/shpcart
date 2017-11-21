@@ -114,7 +114,7 @@ public class ShoppingCartTest {
     public void testTotalShoppingNumber() {
         System.out.println("TotalShoppingNumber");
         ShoppingCart instance = new ShoppingCart(11, 50);
-        Item pen = new Item(201);  // adding new item to the array
+        Item pen = new Item("pen", "old", 1, 1.1 );  // adding new item to the array
         instance.addtoShoppingCart(pen);
         int expResult = 1;
         int result = instance.TotalShoppingNumber();
