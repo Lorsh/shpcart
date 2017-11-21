@@ -27,11 +27,15 @@ public class ShoppingCart {
         items.add(item);
         catalog.removeItemFromCatalog(item.getProductID());
     }
+    
+    public ArrayList<Item> getItems(){
+        return items;
+    }
     public double getsubtotal(){
     double x = 0;
     //summation of all the item
     for(int i=0;i<items.size() ;i++){
-        x = items.get(shoppingID).getPrice();
+        x = items.get(i).getPrice();
         subtotal = subtotal + x;
            
     }
@@ -89,9 +93,13 @@ public class ShoppingCart {
         return (items.size());
     }
 
-    public void viewCartDetails() {
+    public String viewCartDetails() { // changed the return type to string 
+        // change in the string
         //int shoppingTotal = items.size();
-        System.out.println("Shopping ID is " +getshoppingID() +"\nNumber of Items " +TotalShoppingNumber()+ "\nSubtotal " +getsubtotal() );
+       String cartDetail;
+       cartDetail = "Shopping ID is"  +getshoppingID()+ "Number of Items" +TotalShoppingNumber()+ "Subtotal" +getsubtotal();
+       System.out.println(cartDetail);
+        return cartDetail;
     }
 // adding TAX (HST) to the SubTotal
     public double calculateSub() {
