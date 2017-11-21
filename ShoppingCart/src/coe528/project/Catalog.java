@@ -15,7 +15,6 @@ public class Catalog {
     // collection of distinct Items that is initially preloaded with     
     // items that are available to purchase.
     // The abstraction function is: 
-    // a) Write the abstraction function here 
     //  AF(c) : An ArrayList of unique Items
     // 
     // 
@@ -144,6 +143,25 @@ public class Catalog {
     
     }
     
+    
+    
+      /** MODIFIES: none
+        EFFECTS: returns Item object corresponding to the name of the item if it exists. 
+    
+    **/
+   public Item getItem (String itemName, String condition) {
+    int index;
+        for (Item x : items) {
+            if (x.getName().equals(itemName) && x.getCondition().equals(condition)) {
+                return x;
+            }
+        }
+    
+    return null;
+    
+    }
+    
+    
         /** MODIFIES: items arrayList
         EFFECTS: adds Item to items arrayList and updates the file.
     
@@ -184,4 +202,14 @@ public class Catalog {
         }
         return true;
         }
+      
+      
+      @Override
+      public String toString() {
+      String output = "Items in Catalog:\n";
+      for (Item x : items) {
+          output.concat(x.toString());
+      }
+      return output; 
+      }
 }

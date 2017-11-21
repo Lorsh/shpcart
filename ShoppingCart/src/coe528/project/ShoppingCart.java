@@ -11,6 +11,8 @@ public class ShoppingCart {
 
     private double subtotal;
 
+    private Catalog catalog = Catalog.getInstance();
+    
     public ShoppingCart(int shoppingID, double subtotal) {
         this.items = new ArrayList<Item>(); 
         this.shoppingID = shoppingID;
@@ -22,7 +24,9 @@ public class ShoppingCart {
         return shoppingID; // getting the ID of the item
     }
     public void addtoShoppingCart(Item item){
+        
         items.add(item);
+        catalog.removeItemFromCatalog(item.getProductID());
     }
     public double getsubtotal(){
     double x = 0;
