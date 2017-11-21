@@ -88,7 +88,21 @@ public class ShoppingCart {
 
     }
     
+  /** MODIFIES: none
+  EFFECTS: returns Item object corresponding to the name of the item and its condition if it exists.   
+ **/
+   public Item getItem (String itemName, String condition) {
+    int index;
+        for (Item x : items) {
+            if (x.getName().equals(itemName) && x.getCondition().equals(condition)) {
+                return x;
+            }
+        }
     
+    return null;
+    
+    }
+   
     public int TotalShoppingNumber(){
         return (items.size());
     }

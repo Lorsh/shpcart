@@ -6,48 +6,45 @@ public class Item {
 
     private String condition;
 
-    private int productID;
+    private final int productID;
 
     private double price;
 
-    public Item(int itemID) {
-        productID = itemID;
+    public Item(String name, String condition, int productID, double price) {
+        this.name = name;
+        this.condition = condition;
+        this.productID = productID;
+        this.price = price;
     }
-
+    
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCondition() {
         return condition;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
     public int getProductID() {
         return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
     }
 
     public double getPrice() {
         return price;
     }
-
-    public void setPrice(double price) {
-        this.price = price;
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Item && ((Item)obj).getName() == this.name && ((Item)obj).getCondition() == this.condition){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-
+    
     @Override
     public String toString() {
-        return "";
+        return "Name:\t\t"+name+"\n" + "Price:\t\t"+price+"\n" + "Condition: \t\t"+condition+"\n" + "Product ID:\t\t"+productID+"\n";
     }
 }
