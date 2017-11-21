@@ -49,7 +49,7 @@ public class Customer {
         System.out.println("Added " + amount + " " + iName + " to shopping cart");
     }
     
-        public void removeToCart(){
+        public void removeFromCart(){
         int iD;
         int amount;
         int i;
