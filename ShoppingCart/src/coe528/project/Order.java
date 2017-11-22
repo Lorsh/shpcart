@@ -1,24 +1,16 @@
 package coe528.project;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Order {
+    static private int orderIDCounter= 0;
+    
+    private Calendar dateGen;  // date in which order was generated
 
-    private int order;
-
-    private Calendar dataGen;
-
-    private Customer customer;
-
-    private ShoppingCart cart;
-
-    private String status;
-
-    public Order() {
-    }
-
-    public void placeOrder() {
-    }
+    private Customer customer; 
+    
+    private ArrayList<Item> items;
 
     private int orderID;
 
@@ -35,14 +27,30 @@ public class Order {
     private double totalCost;
 
     private Calendar expectedArrival;
+    
+     public Order() {
+         this.orderID = orderIDCounter;
+         orderIDCounter++;
+         items = customer.getShopppingCart().getItems();
+         
+         
+    }
 
-    private OrderState noShippingInfo;
-
+    
+    public void placeOrder() {
+        
+        
+    }
+    public double afterTax() {
+        double m = ((1.13*(subTotal)));
+        return m;
+    }
+    
     public OrderState setOrderState() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     public double calculateTotal() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 }
