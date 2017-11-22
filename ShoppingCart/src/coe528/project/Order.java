@@ -1,56 +1,79 @@
 package coe528.project;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Order {
     static private int orderIDCounter= 0;
     
-    private Calendar dateGen;  // date in which order was generated
+    private final String dateGen;  // date in which order was generated
 
     private Customer customer; 
     
-    private ArrayList<Item> items;
+    private final double threshold = 100;
+    
+    private final String datePattern = "yyyy-MM-dd";
+    
+    private final ArrayList<Item> items;
 
-    private int orderID;
+    private final int orderID;
 
-    private OrderState currentState;
+    private final OrderState currentState;
 
     private OrderState OverThreshold;
 
     private OrderState UnderThreshold;
 
-    private double subTotal;
+    private final double subtotal;
 
     private ShippingInfo shipInfo;
 
-    private double totalCost;
+    private final double totalCost;
 
-    private Calendar expectedArrival;
+    private final String expectedArrival;
     
      public Order() {
          this.orderID = orderIDCounter;
          orderIDCounter++;
-         items = customer.getShopppingCart().getItems();
+         items = customer.getShoppingCart().getItems();
+         dateGen = calculateDateGen(DateTimeFormatter.ofPattern(datePattern));
+         expectedArrival = calculateDateOfArrival(DateTimeFormatter.ofPattern(datePattern));
+         subtotal = customer.getShoppingCart().getSubtotal();
+         currentState = (subtotal>threshold) ? OverThreshold : UnderThreshold;
+         totalCost = calculateTotal(this.subtotal,items);
          
-         
+    }
+     
+    private String calculateDateGen(DateTimeFormatter formatter){
+        return LocalDate.now().format(formatter);
+    }
+     
+     
+    private String calculateDateOfArrival(DateTimeFormatter formatter){
+        return LocalDate.now().plusDays(7).format(formatter);
     }
 
-    
-    public void placeOrder() {
-        
-        
+    public String getDateGen() {
+        return dateGen;
     }
-    public double afterTax() {
-        double m = ((1.13*(subTotal)));
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public String getExpectedArrival() {
+        return expectedArrival;
+    }
+    
+    
+    
+    public double afterTax(double price) {
+        double m = ((1.13*(price)));
         return m;
     }
-    
-    public OrderState setOrderState() {
-       
-    }
 
-    public double calculateTotal() {
-       
+    public double calculateTotal(double subtotal,ArrayList<Item> shippingCost) {
+       return afterTax(currentState.calculateTotal(subtotal,shippingCost));
     }
 }

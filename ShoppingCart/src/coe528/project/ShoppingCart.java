@@ -26,31 +26,38 @@ public class ShoppingCart {
         
         items.add(item);
         catalog.removeItemFromCatalog(item.getProductID());
+        subtotal = updateSubTotal();
     }
     
     public ArrayList<Item> getItems(){
         return items;
     }
-    public double getsubtotal(){
+    public double updateSubTotal(){
     double x = 0;
     //summation of all the item
     for(int i=0;i<items.size() ;i++){
-        x = items.get(i).getPrice();
-        subtotal = subtotal + x;
+        x = x +  items.get(i).getPrice();
            
     }
-        return (subtotal);
+        return x;
     }
 
-    public void checkOut() {
+    public double getSubtotal() {
+        return subtotal;
+    }
+    
+    
+
+    public Order checkOut() {
        Order y = new Order();
-        
+        return y;
     }
     public void removeFromShoppingCart(Item item) {
         catalog.addItemToCatalog(item);
         if (catalog.checkItemExist(item.getProductID())) {
             items.remove(item);
         }
+        subtotal = updateSubTotal();
     }
     public void updateQuantity(int x, Item item) { //take the reference of the item from the shopping chart and put that into the chopping chart
         int accum = 0;
@@ -111,16 +118,13 @@ public class ShoppingCart {
         // change in the string
         //int shoppingTotal = items.size();
        String cartDetail;
-       cartDetail = "Shopping ID is"  +getshoppingID()+ "Number of Items" +TotalShoppingNumber()+ "Subtotal" +getsubtotal();
+       cartDetail = "Shopping ID is"  +getshoppingID()+ "Number of Items" +TotalShoppingNumber()+ "Subtotal" +updateSubTotal();
        System.out.println(cartDetail);
         return cartDetail;
     }
 // adding TAX (HST) to the SubTotal
-    public double calculateSub() {
-        double m = ((1.13*(subtotal)));
-        return m;
-    }
+ 
     public String toString() {
-        return "Numbers of Items" +TotalShoppingNumber()+ "Total " +getsubtotal() +"After Tax " +calculateSub();
+        return "Numbers of Items" +TotalShoppingNumber()+ ".\n0ubtotal " +updateSubTotal();
     }
 }

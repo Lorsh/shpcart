@@ -22,6 +22,22 @@ public class Customer {
 
     public Customer() {
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCreditCardInfo() {
+        return creditCardInfo;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
     
     
     // User seen products
@@ -70,6 +86,33 @@ public class Customer {
         }
         
         System.out.println("Removed " + amount + " " + iName + " to shopping cart");
+    }
+    
+    public void proceedToCheckout(){
+        boolean cont = false;
+        String sc = null;
+        Scanner s = new Scanner(System.in);
+        
+        //Check if Shopping Cart has an item
+        if(shoppingCart.TotalShoppingNumber() == 0){
+            System.out.println("You do not have any items in your shopping cart to checkout.");
+            return;
+        }
+        
+        
+        
+        System.out.println("----------Shopping Cart Summary----------:"+shoppingCart.toString()+"\n-----------------------------------------");
+        System.out.println("Would you like to procedd to checkout? Press Y/N: ");
+        while(!s.hasNext("[NnYy]")){
+            s.next();
+        }
+        sc = s.next();
+        
+        if(sc == "N" || sc == "n"){
+            return;
+        }
+
+        order = shoppingCart.checkOut();
     }
     
     public void login() {

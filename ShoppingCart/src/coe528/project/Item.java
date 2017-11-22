@@ -9,11 +9,14 @@ public class Item {
     private final int productID;
 
     private double price;
+    
+    private static int IDCounter = 0;
 
     public Item(String name, String condition, int productID, double price) {
+        IDCounter++;
         this.name = name;
         this.condition = condition;
-        this.productID = productID;
+        this.productID = IDCounter;
         this.price = price;
     }
     
@@ -45,6 +48,6 @@ public class Item {
     
     @Override
     public String toString() {
-        return "Name:\t\t"+name+"\n" + "Price:\t\t"+price+"\n" + "Condition: \t\t"+condition+"\n" + "Product ID:\t\t"+productID+"\n";
+        return "Name: "+name+ "\t\tPrice: "+price+"\t\tCondition: "+condition;
     }
 }
