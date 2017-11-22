@@ -48,8 +48,8 @@ public class ShoppingCart {
     
     
 
-    public Order checkOut() {
-       Order y = new Order();
+    public Order createOrder(ArrayList<Item> items, double subtotal) {
+       Order y = new Order(items,subtotal);
         return y;
     }
     public void removeFromShoppingCart(Item item) {
@@ -116,15 +116,15 @@ public class ShoppingCart {
 
     public String viewCartDetails() { // changed the return type to string 
         // change in the string
-        //int shoppingTotal = items.size();
+        //int shoppingTotal = items.size();---------------------------------------------------------------------+
        String cartDetail;
        cartDetail = "Shopping ID is"  +getshoppingID()+ "Number of Items" +TotalShoppingNumber()+ "Subtotal" +updateSubTotal();
        System.out.println(cartDetail);
         return cartDetail;
     }
-// adding TAX (HST) to the SubTotal
+
  
     public String toString() {
-        return "Numbers of Items" +TotalShoppingNumber()+ ".\n0ubtotal " +updateSubTotal();
+        return "Numbers of Items " +TotalShoppingNumber()+ " Subtotal " +updateSubTotal();
     }
 }

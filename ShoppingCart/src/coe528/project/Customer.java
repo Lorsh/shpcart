@@ -112,7 +112,7 @@ public class Customer {
             return;
         }
 
-        order = shoppingCart.checkOut();
+        order = shoppingCart.createOrder(shoppingCart.getItems(), shoppingCart.getSubtotal());
     }
     
     public void login() {

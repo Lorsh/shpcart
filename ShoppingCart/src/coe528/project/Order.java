@@ -33,13 +33,14 @@ public class Order {
 
     private final String expectedArrival;
     
-     public Order() {
+     public Order(ArrayList<Item> items, double subtotal) {
+         this.customer = customer;
          this.orderID = orderIDCounter;
          orderIDCounter++;
-         items = customer.getShoppingCart().getItems();
+         this.items = items;
          dateGen = calculateDateGen(DateTimeFormatter.ofPattern(datePattern));
          expectedArrival = calculateDateOfArrival(DateTimeFormatter.ofPattern(datePattern));
-         subtotal = customer.getShoppingCart().getSubtotal();
+         this.subtotal = subtotal;
          currentState = (subtotal>threshold) ? OverThreshold : UnderThreshold;
          totalCost = calculateTotal(this.subtotal,items);
          
