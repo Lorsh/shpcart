@@ -44,10 +44,10 @@ public class Store {
             }
             switch (i) {
                 case 1:
-                    managerLogin();
+                    customerLogin();
                     break;
                 case 2:
-                    customerLogin();
+                    //
                     break;
                 case 3:
                     System.out.println("Closing Bank Terminal........");
@@ -77,7 +77,8 @@ public class Store {
         ps = s.next();
         
         //username and password check
-        while(checkLogin(us, ps) == false){
+        Login login = new Login(us,ps);
+        while(login.condition() == false){
             System.out.print("Enter username: ");
             while(!s.hasNext()){
                 us = s.next();
@@ -88,6 +89,7 @@ public class Store {
                 ps = s.next();
             }
             ps = s.next();
+            
         }
         //</editor-fold>
         
