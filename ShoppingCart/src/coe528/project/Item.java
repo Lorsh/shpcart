@@ -12,7 +12,7 @@ public class Item {
     
     private static int IDCounter = 0;
 
-    public Item(String name, String condition, int productID, double price) {
+    public Item(String name, String condition, double price) {
         IDCounter++;
         this.name = name;
         this.condition = condition;

@@ -42,6 +42,68 @@ public class Catalog {
     }
     catch (IOException d) {
         //This is where you put the initial items in the store:
+        //<editor-fold defaultstate="collapsed" desc="Code folding Item objects added to "items" arrayList">
+        items.add(new Item("Bike", "New", 200));
+        items.add(new Item("Bike", "New", 200));
+        items.add(new Item("Bike", "New", 200));
+        items.add(new Item("Bike", "Used", 100));
+        items.add(new Item("Bike", "Used", 100));
+        
+        items.add(new Item("Treadmill", "New", 400));
+        items.add(new Item("Treadmill", "Used", 250));
+        items.add(new Item("Treadmill", "New", 400));
+        items.add(new Item("Treadmill", "Used", 250));
+        items.add(new Item("Treadmill", "New", 400));
+        
+        items.add(new Item("Vacuum", "New", 700));
+        items.add(new Item("Vacuum", "Used", 200));
+        items.add(new Item("Vacuum", "New", 700));
+        items.add(new Item("Vacuum", "Used", 200));
+        items.add(new Item("Vacuum", "New", 700));
+        
+        items.add(new Item("TV", "New", 2000));
+        items.add(new Item("TV", "Used", 900));
+        items.add(new Item("TV", "New", 2000));
+        items.add(new Item("TV", "Used", 900));
+        items.add(new Item("TV", "New", 2000));
+        
+        items.add(new Item("Cat", "New", 10000));
+        items.add(new Item("Cat", "Used", 9999));
+        items.add(new Item("Cat", "New", 10000));
+        items.add(new Item("Cat", "Used", 9999));
+        items.add(new Item("Cat", "New", 10000));
+        
+        items.add(new Item("Shoe", "New", 100));
+        items.add(new Item("Shoe", "Used", 50));
+        items.add(new Item("Shoe", "New", 100));
+        items.add(new Item("Shoe", "Used", 50));
+        items.add(new Item("Shoe", "New", 100));
+        
+        items.add(new Item("Drill", "New", 120));
+        items.add(new Item("Drill", "Used", 80));
+        items.add(new Item("Drill", "New", 120));
+        items.add(new Item("Drill", "Used", 80));
+        items.add(new Item("Drill", "New", 120));
+        
+        items.add(new Item("Smart Phone", "New", 1000));
+        items.add(new Item("Smart Phone", "Used", 400));
+        items.add(new Item("Smart Phone", "New", 1000));
+        items.add(new Item("Smart Phone", "Used", 400));
+        items.add(new Item("Smart Phone", "New", 1000));
+        
+        items.add(new Item("Bed", "New", 270));
+        items.add(new Item("Bed", "Used", 150));
+        items.add(new Item("Bed", "New", 270));
+        items.add(new Item("Bed", "Used", 150));
+        items.add(new Item("Bed", "New", 270));
+        
+        items.add(new Item("Table", "New", 500));
+        items.add(new Item("Table", "Used", 100));
+        items.add(new Item("Table", "New", 500));
+        items.add(new Item("Table", "Used", 200));
+        items.add(new Item("Table", "New", 500));
+        //</editor-fold>
+        
         update();
     }
      
