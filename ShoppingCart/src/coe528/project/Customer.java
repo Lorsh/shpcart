@@ -31,6 +31,10 @@ public class Customer implements Serializable {
     public String getName() {
         return name;
     }
+    
+     public String getPassword() {
+        return password;
+    }
 
     public String getEmail() {
         return email;
@@ -156,7 +160,7 @@ public class Customer implements Serializable {
                     //prints the search results
                     System.out.println("Results for "+cmd+":");
                     for(Item x : browsed){
-                        System.out.println(x.toString()+"\n");
+                        System.out.print(x.toString()+"\n");
                     }
                     break;
                 case 2:
@@ -191,4 +195,23 @@ public class Customer implements Serializable {
     public void login() {
         
     }
+
+     @Override
+   public boolean equals(Object obj) {
+   if (obj == null) {
+       return false;
+   }
+   if (!Customer.class.isAssignableFrom(obj.getClass())) {
+   return false;
+   }
+   final Customer acc = (Customer) obj;
+   if ((this.name == null) ? (acc.name != null) : !this.name.equals(acc.name)){
+   return false;
+   }
+    if ((this.password == null) ? (acc.password != null) : !this.password.equals(acc.password)){
+   return false;
+   }
+   return true;
+   }
+
 }

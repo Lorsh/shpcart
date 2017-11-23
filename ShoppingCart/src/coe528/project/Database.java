@@ -35,6 +35,11 @@ public class Database {
     catch (IOException e) {
         Customer cust = new Customer("guest","guest");
         profiles.add(cust);
+        try {
+            update();
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
     }   catch (ClassNotFoundException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
