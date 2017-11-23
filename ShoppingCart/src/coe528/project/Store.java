@@ -14,11 +14,12 @@ import java.util.Scanner;
 public class Store {
 
     /**
-     * @param args the command line arguments
+     * @param args the command line arguments //
      */
     public static void main(String[] args) {
         boolean cont = true;                //Keeps track to exit program
         Scanner s = new Scanner(System.in);
+        Database database = Database.getInstance();
         System.out.println("Welcome to Ex1 Bank! \nAccessing Terminal..... \n");
         
         BankTerminalStart:
