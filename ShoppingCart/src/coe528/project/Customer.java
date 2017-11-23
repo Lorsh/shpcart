@@ -29,6 +29,10 @@ public class Customer implements Serializable {
     public String getName() {
         return name;
     }
+    
+     public String getPassword() {
+        return password;
+    }
 
     public String getEmail() {
         return email;
@@ -116,7 +120,21 @@ public class Customer implements Serializable {
         order = shoppingCart.createOrder(shoppingCart.getItems(), shoppingCart.getSubtotal());
     }
     
-    public void login() {
-        
-    }
+     @Override
+   public boolean equals(Object obj) {
+   if (obj == null) {
+       return false;
+   }
+   if (!Customer.class.isAssignableFrom(obj.getClass())) {
+   return false;
+   }
+   final Customer acc = (Customer) obj;
+   if ((this.name == null) ? (acc.name != null) : !this.name.equals(acc.name)){
+   return false;
+   }
+    if ((this.password == null) ? (acc.password != null) : !this.password.equals(acc.password)){
+   return false;
+   }
+   return true;
+   }
 }
