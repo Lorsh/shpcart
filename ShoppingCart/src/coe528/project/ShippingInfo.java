@@ -65,8 +65,6 @@ public class ShippingInfo {
         this.name = name;
     }
 
-    
-    
     public void updateShippingInfo() {
         Scanner s = new Scanner(System.in);
         int i = -1;

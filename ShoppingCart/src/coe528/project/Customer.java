@@ -9,12 +9,12 @@ public class Customer {
     private String address;
 
     private String email;
-
+    
+    private String password;
+    
     private String creditCardInfo;
 
     private ShippingInfo shippingInfo;
-
-    private double accountBalance;
 
     private Order order;
     
@@ -98,17 +98,15 @@ public class Customer {
             System.out.println("You do not have any items in your shopping cart to checkout.");
             return;
         }
-        
-        
-        
+
         System.out.println("----------Shopping Cart Summary----------:"+shoppingCart.toString()+"\n-----------------------------------------");
-        System.out.println("Would you like to procedd to checkout? Press Y/N: ");
+        System.out.println("Would you like to proceed to checkout? Press Y/N: ");
         while(!s.hasNext("[NnYy]")){
             s.next();
         }
         sc = s.next();
         
-        if(sc == "N" || sc == "n"){
+        if(sc.equals("N") || sc.equals("n")){
             return;
         }
 
