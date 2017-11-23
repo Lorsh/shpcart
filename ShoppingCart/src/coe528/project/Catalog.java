@@ -205,7 +205,17 @@ public class Catalog {
     
     }
     
+    public ArrayList<Item> getItemsFromBrowse (String itemName) {
+        ArrayList<Item> browsedItems = new ArrayList<Item>();
+        for (Item x : items) {
+            if (x.getName().equals(itemName)) {
+                browsedItems.add(x);
+            }
+        }
     
+    return browsedItems;
+    
+    }
     
       /** MODIFIES: none
         EFFECTS: returns Item object corresponding to the name of the item if it exists. 
