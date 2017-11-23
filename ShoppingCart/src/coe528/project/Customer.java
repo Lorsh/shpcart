@@ -123,6 +123,11 @@ public class Customer implements Serializable {
     }
     
     public void browseCatalog(){
+        Scanner s = new Scanner(System.in);
+        String cmd = null;
+        ArrayList<Item> browsed;
+        String regx = "^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}";
+        Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
         
         boolean cont = true;
         while(cont){
@@ -144,12 +149,6 @@ public class Customer implements Serializable {
             }
             switch (i) {
                 case 1:
-                    Scanner s = new Scanner(System.in);
-                    String cmd = null;
-                    ArrayList<Item> browsed;
-                    String regx = "^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}";
-                    Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
-
                     System.out.print("\nPlease input item name: ");
                     while(!s.hasNext(pattern)){
                         s.next(pattern);

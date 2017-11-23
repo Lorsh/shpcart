@@ -98,7 +98,7 @@ public class Store {
         //Main Menu for Customer
         boolean cont = true;
         while(cont){
-            System.out.println("-----"+us+"'s Main Menu-----\n1: Browse Catalog\n2: View Order\n3: Update Profile\n4: Logout\n------------------------------");
+            System.out.println("-----"+us+"'s Main Menu-----\n1: Browse Catalog\n2: View Order\n3: Update Profile\n4: Proceed to Checkout\n5: Logout\n------------------------------");
             System.out.print("Please enter a number: ");
             int i = 0;
             CustomerMenuNumber:
@@ -116,12 +116,17 @@ public class Store {
             }
             switch (i) {
                 case 1:
+                    customer.browseCatalog();
                     break;
                 case 2:
+                    customer.viewOrder();
                     break;
                 case 3:
+                    customer.updateProfile();
                     break;
                 case 4:
+                    customer.proceedToCheckout();
+                case 5:
                     System.out.println("Logging out....");
                     cont = false;
                     break;
