@@ -1,8 +1,9 @@
 package coe528.project;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Customer {
+public class Customer implements Serializable {
 
     private String name;
 
@@ -20,7 +21,9 @@ public class Customer {
     
     private ShoppingCart shoppingCart;
 
-    public Customer() {
+    public Customer(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
     public String getName() {
