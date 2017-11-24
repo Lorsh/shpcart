@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.InputMismatchException;
 
 public class Customer implements Serializable {
 
@@ -151,7 +152,14 @@ public class Customer implements Serializable {
                 case 1:
                     System.out.print("\nPlease input item name: ");
                     while(!s.hasNext(pattern)){
+                        try {
                         s.next(pattern);
+                        }
+                        catch (InputMismatchException e) {
+                            s.reset();
+                            System.out.println("Input name is invalid");    
+                        }
+                        
                     }
                     cmd = s.next(pattern);
                     browsed = Catalog.getInstance().getItemsFromBrowse(cmd);

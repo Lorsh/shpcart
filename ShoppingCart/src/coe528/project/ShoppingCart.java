@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 
-    private int shoppingID;
+    static private int shoppingID = 0;
 
     private ArrayList<Item> items;
 
@@ -13,11 +13,9 @@ public class ShoppingCart {
 
     private Catalog catalog = Catalog.getInstance();
     
-    public ShoppingCart(int shoppingID, double subtotal) {
+    public ShoppingCart(){
         this.items = new ArrayList<Item>(); 
-        this.shoppingID = shoppingID;
-        this.subtotal = subtotal;
-
+        shoppingID++;
     }
     public int getshoppingID(){
         return shoppingID; // getting the ID of the item
@@ -53,7 +51,6 @@ public class ShoppingCart {
         return y;
     }
     public void removeFromShoppingCart(Item item) {
-        catalog.addItemToCatalog(item);
         if (catalog.checkItemExist(item.getProductID())) {
             items.remove(item);
         }
@@ -111,7 +108,13 @@ public class ShoppingCart {
     }
    
     public int TotalShoppingNumber(){
-        return (items.size());
+        try{
+        return items.size();
+        }
+        catch (NullPointerException e) {
+            System.out.println("No items in shopping cart");
+            return 0;
+        }
     }
 
     public String viewCartDetails() { // changed the return type to string 

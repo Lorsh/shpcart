@@ -12,13 +12,14 @@ import java.util.Scanner;
  * @author mshakul
  */
 public class Store {
-
+    static Customer customer = null;
     /**
      * @param args the command line arguments //
      */
     public static void main(String[] args) {
         boolean cont = true;                //Keeps track to exit program
         Scanner s = new Scanner(System.in);
+        
         Database database = Database.getInstance();
         System.out.println("Welcome to Ex1 Bank! \nAccessing Terminal..... \n");
         
@@ -47,10 +48,10 @@ public class Store {
                     customerLogin();
                     break;
                 case 2:
-                    //
+                    
                     break;
                 case 3:
-                    System.out.println("Closing Bank Terminal........");
+                    System.out.println("Goodbye");
                     cont = false;
                     break;
                 default:
@@ -64,7 +65,8 @@ public class Store {
         Scanner s = new Scanner(System.in);
         String us;
         String ps;
-        
+        Login login;
+        do {
         System.out.print("Enter username: ");
         while(!s.hasNext()){
             us = s.next();
@@ -77,24 +79,14 @@ public class Store {
         ps = s.next();
         
         //username and password check
-        Login login = new Login(us,ps);
-        while(login.condition() == false){
-            System.out.print("Enter username: ");
-            while(!s.hasNext()){
-                us = s.next();
-            }
-            us = s.next();
-            System.out.print("Enter password: ");
-            while(!s.hasNext()){
-                ps = s.next();
-            }
-            ps = s.next();
-            
+         login = new Login(us,ps);
+         customer = login.getProf();
         }
+        while(login.condition() == false);
         //</editor-fold>
         
         System.out.println("\nCustomer login successful!\nEntering Main Menu.......\n");
-        
+        customer = login.getProf();
         //Main Menu for Customer
         boolean cont = true;
         while(cont){
