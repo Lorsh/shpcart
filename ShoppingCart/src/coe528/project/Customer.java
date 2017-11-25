@@ -62,6 +62,7 @@ public class Customer implements Serializable {
         int i;
         String iName;
         String iCond = null;
+        Item item = null;
         Scanner s = new Scanner(System.in);
         
         System.out.println("Please enter the name of the item you want to add the shopping cart: ");
@@ -74,9 +75,12 @@ public class Customer implements Serializable {
         }
         amount = s.nextInt();
         
-        if(Catalog.getInstance().getItem(iName, iCond) != null){
-            shoppingCart.updateQuantity(amount, shoppingCart.getItem(iName, iCond));
-            System.out.println("Added " + amount + " " + iName + " to shopping cart");
+        
+        item = Catalog.getInstance().getItem(iName, iCond);
+        if(item != null){
+            shoppingCart.addtoShoppingCart(item);
+            shoppingCart.updateQuantity(amount, item);
+            System.out.println("Removed " + amount + " " + iName + " to shopping cart");
         }
         else{
             System.out.println("No such item was found.");
@@ -89,6 +93,7 @@ public class Customer implements Serializable {
         int i;
         String iName;
         String iCond = null;
+        Item item = null;
         Scanner s = new Scanner(System.in);
         
         System.out.println("Please enter the name of the item you want to remove the shopping cart: ");
@@ -101,7 +106,9 @@ public class Customer implements Serializable {
         }
         amount = s.nextInt();
         
-        if(shoppingCart.getItem(iName, iCond) != null){
+        item = Catalog.getInstance().getItem(iName, iCond);
+        if(item != null){
+            shoppingCart.addtoShoppingCart(item);
             shoppingCart.updateQuantity(amount, shoppingCart.getItem(iName, iCond));
             System.out.println("Removed " + amount + " " + iName + " to shopping cart");
         }
