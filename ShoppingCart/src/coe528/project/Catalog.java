@@ -154,13 +154,7 @@ public class Catalog implements Serializable {
     catch (ArrayIndexOutOfBoundsException e) {
      System.err.println("Array out of bounds exception");
     }
-    finally {
-     if (!checkItemExist(productID)) {
-        System.out.println("Item " + productID + " was successfuly deleted");
-    } else {
-       System.err.println("Item " + productID + " was not deleted");
-    }
-    }
+    
             
             
     }
@@ -239,21 +233,12 @@ public class Catalog implements Serializable {
         EFFECTS: adds Item to items arrayList and updates the file.
     
     **/
-    
+
     
     public void addItemToCatalog(Item item) {
     if (!checkItemExist(item.getProductID())){
     items.add(item);
     update();
-    if (checkItemExist(item.getProductID())) {
-    System.out.println("Item was successfuly created");
-    }
-    else {
-    System.err.println("item " + item.getProductID() + " was not created");
-    }
-    }
-    else {
-    System.err.println("item already exists");
     }
     }
     
