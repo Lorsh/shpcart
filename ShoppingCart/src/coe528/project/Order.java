@@ -77,4 +77,6 @@ public class Order {
     public double calculateTotal(double subtotal,ArrayList<Item> shippingCost) {
        return afterTax(currentState.calculateTotal(subtotal,shippingCost));
     }
+    
+    
 }

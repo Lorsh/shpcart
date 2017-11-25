@@ -26,6 +26,9 @@ public class ShoppingCart {
         catalog.removeItemFromCatalog(item.getProductID());
         subtotal = updateSubTotal();
     }
+    public void removeAllItemsInShoppingCart(){
+        items.clear();
+    }
     
     public ArrayList<Item> getItems(){
         return items;

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ShippingInfo {
 
-   // private int shippingID;
+    //private int shippingID;
 
     //private String shippngType;
 
@@ -15,18 +15,19 @@ public class ShippingInfo {
 
     //private Calendar expectedArrival;
     
-    private String addressStreet;
+    private String addressStreet = "Empty";
     
-    private String addressCity;
+    private String addressCity = "Empty";
     
-    private final String addressProvince = "Ontario";
+    private final String addressProvince = "Empty";
     
-    private String addressPostal;
+    private String addressPostal = "Empty";
     
     private String name;
     
     
     public ShippingInfo(String name) {
+        this.name = name;
     }
 
     public String getAddressStreet() {

@@ -45,10 +45,38 @@ public class Store {
             }
             switch (i) {
                 case 1:
-                    customerLogin();
-                    break;
+                //<editor-fold defaultstate="collapsed" desc="LOGIN SEQUENCE">
+                Scanner c = new Scanner(System.in);
+                String us;
+                String ps;
+                Login login;
+                do {
+                System.out.print("Enter username: ");
+                while(!s.hasNext()){
+                us = s.next();
+                }
+                us = s.next();
+                System.out.print("Enter password: ");
+                while(!s.hasNext()){
+                    ps = s.next();
+                }
+                ps = s.next();
+                
+                //username and password check
+                login = new Login(us,ps);
+                customer = login.getProf();
+                }
+                while(login.condition() == false);
+                //</editor-fold>
+        
+                System.out.println("\nCustomer login successful!\nEntering Main Menu.......\n");
+                customer = login.getProf();
+                mainMenu();
+                break;
                 case 2:
-                    
+                    login = new Login("guest","guest");
+                    customer = login.getProf();
+                    mainMenu();
                     break;
                 case 3:
                     System.out.println("Goodbye");
@@ -60,37 +88,11 @@ public class Store {
         }
     }
     
-    public static void customerLogin(){
-        //<editor-fold defaultstate="collapsed" desc="LOGIN SEQUENCE">
+    public static void mainMenu(){
         Scanner s = new Scanner(System.in);
-        String us;
-        String ps;
-        Login login;
-        do {
-        System.out.print("Enter username: ");
-        while(!s.hasNext()){
-            us = s.next();
-        }
-        us = s.next();
-        System.out.print("Enter password: ");
-        while(!s.hasNext()){
-            ps = s.next();
-        }
-        ps = s.next();
-        
-        //username and password check
-         login = new Login(us,ps);
-         customer = login.getProf();
-        }
-        while(login.condition() == false);
-        //</editor-fold>
-        
-        System.out.println("\nCustomer login successful!\nEntering Main Menu.......\n");
-        customer = login.getProf();
-        //Main Menu for Customer
         boolean cont = true;
         while(cont){
-            System.out.println("-----"+us+"'s Main Menu-----\n1: Browse Catalog\n2: View Order\n3: Update Profile\n4: Proceed to Checkout\n5: Logout\n------------------------------");
+            System.out.println("-----"+customer.getName()+"'s Main Menu-----\n1: Browse Catalog\n2: View Order\n3: Update Profile\n4: Proceed to Checkout\n5: Logout\n------------------------------");
             System.out.print("Please enter a number: ");
             int i = 0;
             CustomerMenuNumber:

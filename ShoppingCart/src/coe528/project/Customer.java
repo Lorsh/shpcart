@@ -30,6 +30,7 @@ public class Customer implements Serializable {
         creditCardInfo = "0000000000000000";
         order = null;
         shoppingCart = new ShoppingCart();
+        this.shippingInfo  = new ShippingInfo(this.name);
     }
 
     public String getName() {
