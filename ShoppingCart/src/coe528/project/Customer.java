@@ -53,6 +53,9 @@ public class Customer implements Serializable {
         return shoppingCart;
     }
     
+    public void clearCart(){
+        shoppingCart.removeAllItemsInShoppingCart();
+    }
     
     // User seen products
     // User choosing products by this stage
@@ -87,7 +90,7 @@ public class Customer implements Serializable {
                     shoppingCart.addtoShoppingCart(item);
                 }
                 System.out.println(j + " " + iCond + " " + iName + " added to shopping cart.");
-                System.out.println(shoppingCart.toString());
+                //System.out.println(shoppingCart.toString());
             }
             else{
                 System.out.println("Only " + i + " of " + iCond + " " + iName + " are available in the store.");
@@ -119,11 +122,11 @@ public class Customer implements Serializable {
         Item item = null;
         Scanner s = new Scanner(System.in);
         
-        System.out.println("Please enter the name of the item you want to remove the shopping cart: ");
+        System.out.println("Please enter the name of the item you want to remove from the shopping cart: ");
         iName = s.next();
-        System.out.println("Please enter the condition of the item you want to add the shopping cart: ");
+        System.out.println("Please enter the condition of the item you want to remove from the shopping cart: ");
         iCond = s.next();
-        System.out.println("How many would you like have: ");
+        System.out.println("How many would you like remove: ");
         while(!s.hasNextInt()){
             amount = s.nextInt();
         }
@@ -134,12 +137,13 @@ public class Customer implements Serializable {
         if(item != null){
             //check if the amount user requested is too high
             i = shoppingCart.getNumberOfItems(iName, iCond);
-            if((i - amount) >= 0){
+            int j = 0;
+            if(amount <= i){
                 //adds to cart x number of times user specified
-                for(i = 0; i >= amount; i++){
+                for(j = 0; j < amount; j++){
                     shoppingCart.removeFromShoppingCart(item);
                 }
-                System.out.println(i + " " + iCond + " " + iName + " removed from shopping cart.");
+                System.out.println(j + " " + iCond + " " + iName + " removed from shopping cart.");
             }
             else{
                 System.out.println("Only up to " + i + " of " + iCond + " " + iName + " can be removed.");
@@ -239,7 +243,7 @@ public class Customer implements Serializable {
                     addToCart();
                     break;
                 case 3:
-                    if(!(shoppingCart.TotalShoppingNumber() > 0)){
+                    if(shoppingCart.TotalShoppingNumber() > 0){
                         removeFromCart();
                     }
                     else{

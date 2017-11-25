@@ -121,6 +121,7 @@ public class Store {
                 case 4:
                     customer.proceedToCheckout();
                 case 5:
+                    customer.clearCart();
                     System.out.println("Logging out....");
                     cont = false;
                     break;

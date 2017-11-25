@@ -28,7 +28,9 @@ public class ShoppingCart implements Serializable{
         subtotal = updateSubTotal();
     }
     public void removeAllItemsInShoppingCart(){
-        items.clear();
+        for(Item x : items){
+            removeFromShoppingCart(x);
+        }
     }
     
     public ArrayList<Item> getItems(){
@@ -66,6 +68,7 @@ public class ShoppingCart implements Serializable{
     }
     public void removeFromShoppingCart(Item item) {
         if (catalog.checkItemExist(item.getProductID())) {
+            catalog.addItemToCatalog(item);
             items.remove(item);
         }
         subtotal = updateSubTotal();
