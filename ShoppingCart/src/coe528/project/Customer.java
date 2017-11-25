@@ -10,8 +10,6 @@ public class Customer implements Serializable {
 
     private String name;
 
-    private String address;
-
     private String email;
     
     private String password;
@@ -27,6 +25,11 @@ public class Customer implements Serializable {
     public Customer(String name, String password) {
         this.name = name;
         this.password = password;
+        this.email = email;
+        shippingInfo = new ShippingInfo(this.name);
+        creditCardInfo = "0000000000000000";
+        order = null;
+        shoppingCart = new ShoppingCart();
     }
 
     public String getName() {
@@ -151,17 +154,22 @@ public class Customer implements Serializable {
             switch (i) {
                 case 1:
                     System.out.print("\nPlease input item name: ");
-                    while(!s.hasNext(pattern)){
+                    while(pattern.){
+                        cmd = s.next(pattern);
+                    }
+                    cmd = s.next(pattern);
+                    if(!)
+                        /**
                         try {
-                        s.next(pattern);
+                           cmd = s.next(pattern);
                         }
                         catch (InputMismatchException e) {
                             s.reset();
                             System.out.println("Input name is invalid");    
                         }
-                        
+                        **/
                     }
-                    cmd = s.next(pattern);
+                    pattern.matcher(cmd)
                     browsed = Catalog.getInstance().getItemsFromBrowse(cmd);
                     
                     //prints the search results
@@ -174,7 +182,7 @@ public class Customer implements Serializable {
                     addToCart();
                     break;
                 case 3:
-                    if(shoppingCart.TotalShoppingNumber() != 0){
+                    if(!(shoppingCart.TotalShoppingNumber() > 0)){
                         removeFromCart();
                     }
                     else{
