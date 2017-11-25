@@ -21,7 +21,7 @@ public class Store {
         Scanner s = new Scanner(System.in);
         
         Database database = Database.getInstance();
-        System.out.println("Welcome to Ex1 Bank! \nAccessing Terminal..... \n");
+        System.out.println("Welcome to ChimpGorden! \nAccessing Terminal..... \n");
         
         BankTerminalStart:
         
@@ -95,16 +95,16 @@ public class Store {
         Scanner s = new Scanner(System.in);
         boolean cont = true;
         while(cont){
-            System.out.println("-----"+customer.getName()+"'s Main Menu-----\n1: Browse Catalog\n2: View Order\n3: Update Profile\n4: Proceed to Checkout\n5: Logout\n------------------------------");
+            System.out.println("-----"+customer.getName()+"'s Main Menu-----\n1: Browse Catalog\n2: View Order\n3: View Shopping Cart\n4: Update Profile\n5: Proceed to Checkout\n6: Logout\n------------------------------");
             System.out.print("Please enter a number: ");
             int i = 0;
             CustomerMenuNumber:
-            while(!(i >= 1 && i <= 5)){
+            while(!(i >= 1 && i <= 6)){
                 while(!s.hasNextInt()){
                     i = s.nextInt();
                 }
                 i = s.nextInt();
-                if(!(i >= 1 && i <= 5)){
+                if(!(i >= 1 && i <= 6)){
                         System.out.print("Invalid entry. Please try again: ");
                     }
                     else{
@@ -113,20 +113,30 @@ public class Store {
             }
             switch (i) {
                 case 1:
+                    
                     customer.browseCatalog();
                     break;
                 case 2:
+                    
                     customer.viewOrder();
                     break;
                 case 3:
-                    customer.updateProfile();
+                    customer.viewCart();
+                    
                     break;
                 case 4:
-                    customer.proceedToCheckout();
+                    customer.updateProfile();
+                    
+                    break;
+                    
                 case 5:
+                    customer.proceedToCheckout();
+                    
+                    continue;
+                case 6:
                     System.out.println("Logging out....");
                     cont = false;
-                    break;
+                     break;
                 default:
                     break;
             }

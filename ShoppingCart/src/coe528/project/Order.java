@@ -9,8 +9,6 @@ public class Order {
     
     private final String dateGen;  // date in which order was generated
 
-    private Customer customer; 
-    
     private final double threshold = 100;
     
     private final String datePattern = "yyyy-MM-dd";
@@ -21,30 +19,40 @@ public class Order {
 
     private final OrderState currentState;
 
-    private OrderState OverThreshold;
+    private OrderState OverThreshold = new OverThreshold();
 
-    private OrderState UnderThreshold;
+    private OrderState UnderThreshold = new UnderThreshold();
 
     private final double subtotal;
 
-    private ShippingInfo shipInfo;
+    final private ShippingInfo shipInfo;
 
     private final double totalCost;
 
+    private final double shippingCost;
+    
+    private final double taxCost;
+    
     private final String expectedArrival;
     
-     public Order(ArrayList<Item> items, double subtotal) {
-         this.customer = customer;
+     public Order(ArrayList<Item> items, double subtotal,ShippingInfo shipInfo) {
          this.orderID = orderIDCounter;
          orderIDCounter++;
          this.items = items;
          dateGen = calculateDateGen(DateTimeFormatter.ofPattern(datePattern));
          expectedArrival = calculateDateOfArrival(DateTimeFormatter.ofPattern(datePattern));
          this.subtotal = subtotal;
+         this.shipInfo = shipInfo;
+
          currentState = (subtotal>threshold) ? OverThreshold : UnderThreshold;
-         totalCost = calculateTotal(this.subtotal,items);
+         shippingCost = calculateShipping(this.subtotal,items);
+         double afterShipping = this.shippingCost + this.subtotal;
+         taxCost = calculateTax(subtotal);
+         totalCost = taxCost + afterShipping;
          
     }
+    
+    
      
     private String calculateDateGen(DateTimeFormatter formatter){
         return LocalDate.now().format(formatter);
@@ -69,14 +77,27 @@ public class Order {
     
     
     
-    public double afterTax(double price) {
-        double m = ((1.13*(price)));
+    public double calculateTax(double price) {
+        double m = ((0.13*(price)));
         return m;
     }
 
-    public double calculateTotal(double subtotal,ArrayList<Item> shippingCost) {
-       return afterTax(currentState.calculateTotal(subtotal,shippingCost));
+    public double calculateShipping(double subtotal,ArrayList<Item> shippingCost) {
+       return currentState.calculateShipping(subtotal,shippingCost);
     }
     
+    @Override
+    public String toString(){
+        String output = shipInfo.toString() + "\n";
+        for (Item x : items) {
+            output = output.concat(x.toString() + "\n");
+        }
+        output = output.concat(currentState.toString() + "\n");
+        String truncated_taxCost = (String ) String.format("%.2f",taxCost );
+        output = output.concat("Tax: "  + truncated_taxCost + "\n");
+        String truncated_totalCost = (String ) String.format("%.2f",totalCost );
+        output = output.concat("Total cost: "  + truncated_totalCost + "\n");
+        return output;
+    }
     
 }

@@ -36,7 +36,9 @@ public class ShoppingCart implements Serializable{
             removeFromShoppingCart(x);
         }
     }
-    
+    public void deliverItems() {
+        items.clear();
+    }
     public ArrayList<Item> getItems(){
         return items;
     }
@@ -66,8 +68,8 @@ public class ShoppingCart implements Serializable{
     
     }
 
-    public Order createOrder(ArrayList<Item> items, double subtotal) {
-       Order y = new Order(items,subtotal);
+    public Order createOrder(ArrayList<Item> items, double subtotal, ShippingInfo shipInfo) {
+       Order y = new Order(items,subtotal,shipInfo);
         return y;
     }
     public void removeFromShoppingCart(Item item) {

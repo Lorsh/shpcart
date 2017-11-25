@@ -20,7 +20,7 @@ public class ShippingInfo implements Serializable {
     
     private String addressCity = "Empty";
     
-    private final String addressProvince = "Empty";
+    private String addressProvince = "Empty";
     
     private String addressPostal = "Empty";
     
@@ -89,11 +89,11 @@ public class ShippingInfo implements Serializable {
             }
         }
         switch(i){
-            case '1' :
+            case 1 :
                 System.out.print("Please enter full name: ");
                 n = s.next();
                 break;
-            case '2' :
+            case 2 :
                 System.out.print("Please enter street address: ");
                 aS = s.next();
                 System.out.print("Please enter City: ");
@@ -101,7 +101,7 @@ public class ShippingInfo implements Serializable {
                 System.out.print("Please enter postal code: ");
                 aPo = s.next(); 
                 break;
-            case '3' :
+            case 3 :
                 System.out.print("Please enter full name: ");
                 n = s.next();
                 System.out.print("Please enter street address: ");
@@ -111,7 +111,7 @@ public class ShippingInfo implements Serializable {
                 System.out.print("Please enter postal code: ");
                 aPo = s.next(); 
                 break;
-            case '4' :
+            case 4:
                 break;                    
         }
         
@@ -140,7 +140,13 @@ public class ShippingInfo implements Serializable {
         }   
             
     }    
-            
+        public boolean repOK(){
+        String empty = "Empty";
+        if (addressStreet.equals(empty) || addressCity.equals(empty) || addressProvince.equals(empty) || addressPostal.equals(empty)) {
+            return false;
+        }
+        else return true;
+    }
     public String toString() {
         return name+"\n"+addressStreet+"\n"+addressCity+", "+addressProvince+"\n"+addressPostal;
     }    

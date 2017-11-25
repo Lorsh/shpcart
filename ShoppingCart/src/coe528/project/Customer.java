@@ -166,15 +166,17 @@ public class Customer implements Serializable {
         **/
     }
     
-    public void proceedToCheckout(){
+    public void proceedToCheckout () {
         boolean cont = false;
         String sc = null;
         Scanner s = new Scanner(System.in);
         
         //Check if Shopping Cart has an item
+        
         if(shoppingCart.TotalShoppingNumber() == 0){
             System.out.println("You do not have any items in your shopping cart to checkout.");
             return;
+            //throw new IllegalArgumentException();
         }
 
         System.out.println("----------Shopping Cart Summary----------:"+shoppingCart.toString()+"\n-----------------------------------------");
@@ -184,13 +186,29 @@ public class Customer implements Serializable {
         }
         sc = s.next();
         
-        if(sc.equals("N") || sc.equals("n")){
-            return;
+        if(sc.equals("Y") || sc.equals("y")){
+            if (!shippingInfo.repOK()) {
+                System.out.println("Shipping information was not completed, you need to complete that before proceeding");
+                updateProfile();
+            }
+            order = shoppingCart.createOrder(shoppingCart.getItems(), shoppingCart.getSubtotal(),shippingInfo);
+            System.out.println("Please verify that the information is correct.\n To confirm, press y, or otherwise press any other key\n");
+            System.out.println(order.toString());
+            sc = s.next();
+            if (sc.equals("y") || sc.equals("Y")) {
+               shoppingCart.deliverItems();
+               System.out.println("Items have been scheduled for delivery.");
+               System.out.println("Estimated time of arrival:" + order.getExpectedArrival());
+            }
+            else {
+                System.out.println("Order did not go through.");
+            }
+            
         }
-
-        order = shoppingCart.createOrder(shoppingCart.getItems(), shoppingCart.getSubtotal());
+        
+        
     }
-    
+ 
     public void browseCatalog(){
         Scanner s = new Scanner(System.in);
         String cmd = null;
@@ -263,7 +281,21 @@ public class Customer implements Serializable {
     }
     
     public void viewOrder(){
-        
+        try {
+        System.out.println(order.toString());
+        }
+        catch (NullPointerException e) {
+            System.err.println("No order exists yet");
+        }
+    }
+    
+    public void viewCart(){
+        try {
+        System.out.println(shoppingCart.toString());
+        }
+        catch (NullPointerException e) {
+            System.err.println("Shopping cart is empty");
+        }
     }
     
     public void updateProfile(){

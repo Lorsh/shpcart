@@ -4,5 +4,5 @@ import java.util.ArrayList;
 
 public interface OrderState {
 
-    public double calculateTotal(double subtotal,ArrayList<Item> items);
+    public double calculateShipping(double subtotal,ArrayList<Item> items);
 }
