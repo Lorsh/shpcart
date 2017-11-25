@@ -227,6 +227,18 @@ public class Catalog implements Serializable {
     return null;
     
     }
+   
+     public int getNumberOfItems (String itemName, String condition) {
+    int acum = 0;
+        for (Item x : items) {
+            if (x.getName().equals(itemName) && x.getCondition().equals(condition)) {
+                acum++;
+            }
+        }
+    
+    return acum;
+    
+    }
     
     
         /** MODIFIES: items arrayList
