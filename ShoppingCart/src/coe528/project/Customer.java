@@ -27,6 +27,8 @@ public class Customer implements Serializable {
     public Customer(String name, String password) {
         this.name = name;
         this.password = password;
+        this.shippingInfo  = new ShippingInfo(this.name);
+        
     }
 
     public String getName() {
