@@ -1,9 +1,10 @@
 package coe528.project;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class ShippingInfo {
+public class ShippingInfo implements Serializable {
 
     //private int shippingID;
 

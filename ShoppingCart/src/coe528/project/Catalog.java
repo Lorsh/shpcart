@@ -6,10 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Catalog {
+public class Catalog implements Serializable {
     
     // Overview: Catalog is a Singleton, mutable, unbunded     
     // collection of distinct Items that is initially preloaded with     

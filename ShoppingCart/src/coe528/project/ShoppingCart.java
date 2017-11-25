@@ -1,9 +1,10 @@
 package coe528.project;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable{
 
     static private int shoppingID = 0;
 
