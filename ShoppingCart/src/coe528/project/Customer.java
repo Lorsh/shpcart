@@ -155,22 +155,18 @@ public class Customer implements Serializable {
             switch (i) {
                 case 1:
                     System.out.print("\nPlease input item name: ");
-                    while(pattern.){
+                    while(!s.hasNext(pattern)){
                         cmd = s.next(pattern);
                     }
                     cmd = s.next(pattern);
-                    if(!)
-                        /**
+                        
                         try {
                            cmd = s.next(pattern);
                         }
                         catch (InputMismatchException e) {
-                            s.reset();
+                            //s.reset();
                             System.out.println("Input name is invalid");    
                         }
-                        **/
-                    }
-                    pattern.matcher(cmd)
                     browsed = Catalog.getInstance().getItemsFromBrowse(cmd);
                     
                     //prints the search results
