@@ -80,12 +80,14 @@ public class Customer implements Serializable {
         if(item != null){
             //check if the amount user requested is too high
             i = Catalog.getInstance().getNumberOfItems(iName, iCond);
-            if(amount == i){
+            int j = 0;
+            if(amount <= i){
                 //adds to cart x number of times user specified
-                for(i = 0; i >= amount; i++){
+                for(j = 0; j < amount; j++){
                     shoppingCart.addtoShoppingCart(item);
                 }
-                System.out.println(i + " " + iCond + " " + iName + " added to shopping cart.");
+                System.out.println(j + " " + iCond + " " + iName + " added to shopping cart.");
+                System.out.println(shoppingCart.toString());
             }
             else{
                 System.out.println("Only " + i + " of " + iCond + " " + iName + " are available in the store.");
