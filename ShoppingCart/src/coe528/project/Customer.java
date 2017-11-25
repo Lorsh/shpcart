@@ -65,7 +65,7 @@ public class Customer implements Serializable {
         int i;
         String iName;
         String iCond = null;
-        Item item = null;
+        Item[] Items;
         Scanner s = new Scanner(System.in);
         
         System.out.println("Please enter the name of the item you want to add the shopping cart: ");
@@ -74,20 +74,20 @@ public class Customer implements Serializable {
         iCond = s.next();
         System.out.println("How many would you like have: ");
         while(!s.hasNextInt()){
-            amount = s.nextInt();
+            s.next();
         }
         amount = s.nextInt();
         
         //Check if item exists based on string
-        item = Catalog.getInstance().getItem(iName, iCond);
-        if(item != null){
+        Items = Catalog.getInstance().getItemsFromBrowse(iName, iCond, amount);
+        if(Items != null){
             //check if the amount user requested is too high
             i = Catalog.getInstance().getNumberOfItems(iName, iCond);
             int j = 0;
             if(amount <= i){
                 //adds to cart x number of times user specified
                 for(j = 0; j < amount; j++){
-                    shoppingCart.addtoShoppingCart(item);
+                    shoppingCart.addtoShoppingCart(Items[j]);
                 }
                 System.out.println(j + " " + iCond + " " + iName + " added to shopping cart.");
                 //System.out.println(shoppingCart.toString());
@@ -119,7 +119,7 @@ public class Customer implements Serializable {
         int i;
         String iName;
         String iCond = null;
-        Item item = null;
+        Item[] Items;
         Scanner s = new Scanner(System.in);
         
         System.out.println("Please enter the name of the item you want to remove from the shopping cart: ");
@@ -128,20 +128,20 @@ public class Customer implements Serializable {
         iCond = s.next();
         System.out.println("How many would you like remove: ");
         while(!s.hasNextInt()){
-            amount = s.nextInt();
+            s.next();
         }
         amount = s.nextInt();
         
         //check if item exist based on string
-        item = shoppingCart.getItem(iName, iCond);
-        if(item != null){
+        Items = shoppingCart.getItemsFromBrowse(iName, iCond, amount);
+        if(Items != null){
             //check if the amount user requested is too high
             i = shoppingCart.getNumberOfItems(iName, iCond);
             int j = 0;
             if(amount <= i){
                 //adds to cart x number of times user specified
                 for(j = 0; j < amount; j++){
-                    shoppingCart.removeFromShoppingCart(item);
+                    shoppingCart.removeFromShoppingCart(Items[j]);
                 }
                 System.out.println(j + " " + iCond + " " + iName + " removed from shopping cart.");
             }
@@ -195,8 +195,8 @@ public class Customer implements Serializable {
         Scanner s = new Scanner(System.in);
         String cmd = null;
         ArrayList<Item> browsed;
-        String regx = "^\\p{L}+[\\p{L}\\p{Z}\\p{P}]{0,}";
-        Pattern pattern = Pattern.compile(regx, Pattern.CASE_INSENSITIVE);
+        String regx = "^([A-Z][a-z]+)(\\s*[A-Z][a-z]+)?";
+        Pattern pattern = Pattern.compile(".*");
         
         boolean cont = true;
         while(cont){
@@ -220,10 +220,11 @@ public class Customer implements Serializable {
                 case 1:
                     System.out.print("\nPlease input item name: ");
                     while(!s.hasNext(pattern)){
-                        cmd = s.next(pattern);
+                        System.out.print("\nInput name is invalid. Please try again: ");
+                        s.next();
                     }
                     cmd = s.next(pattern);
-                        
+                        /**
                         try {
                            cmd = s.next(pattern);
                         }
@@ -231,6 +232,7 @@ public class Customer implements Serializable {
                             //s.reset();
                             System.out.println("Input name is invalid");    
                         }
+                        **/
                     browsed = Catalog.getInstance().getItemsFromBrowse(cmd);
                     
                     //prints the search results

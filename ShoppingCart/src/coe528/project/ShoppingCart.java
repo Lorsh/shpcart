@@ -28,7 +28,11 @@ public class ShoppingCart implements Serializable{
         subtotal = updateSubTotal();
     }
     public void removeAllItemsInShoppingCart(){
+        ArrayList<Item> I = new ArrayList<Item>();
         for(Item x : items){
+            I.add(x);
+        }
+        for(Item x : I){
             removeFromShoppingCart(x);
         }
     }
@@ -67,7 +71,7 @@ public class ShoppingCart implements Serializable{
         return y;
     }
     public void removeFromShoppingCart(Item item) {
-        if (catalog.checkItemExist(item.getProductID())) {
+        if (!catalog.checkItemExist(item.getProductID())) {
             catalog.addItemToCatalog(item);
             items.remove(item);
         }
@@ -108,6 +112,25 @@ public class ShoppingCart implements Serializable{
         }
 
     }
+    
+    public Item[] getItemsFromBrowse (String itemName, String itemCond, int amount) {
+        //ArrayList<Item> browsedItems = new ArrayList<Item>();
+        Item[] browsedItems = new Item[amount];
+        int i = 0;
+        for (Item x : items) {
+            if (x.getName().equals(itemName) && x.getCondition().equals(itemCond)) {
+                browsedItems[i] = x;
+                i++;
+            }
+            if(i == amount){
+                break;
+            }
+        }
+    
+        return browsedItems;
+    
+    }
+    
     
   /** MODIFIES: none
   EFFECTS: returns Item object corresponding to the name of the item and its condition if it exists.   

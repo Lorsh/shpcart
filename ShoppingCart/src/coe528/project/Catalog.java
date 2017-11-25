@@ -212,6 +212,24 @@ public class Catalog implements Serializable {
     
     }
     
+    public Item[] getItemsFromBrowse (String itemName, String itemCond, int amount) {
+        //ArrayList<Item> browsedItems = new ArrayList<Item>();
+        Item[] browsedItems = new Item[amount];
+        int i = 0;
+        for (Item x : items) {
+            if (x.getName().equals(itemName) && x.getCondition().equals(itemCond)) {
+                browsedItems[i] = x;
+                i++;
+            }
+            if(i == amount){
+                break;
+            }
+        }
+    
+        return browsedItems;
+    
+    }
+    
       /** MODIFIES: none
         EFFECTS: returns Item object corresponding to the name of the item if it exists. 
     

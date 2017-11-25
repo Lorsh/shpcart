@@ -79,6 +79,9 @@ public class Store {
                     mainMenu();
                     break;
                 case 3:
+                    if(customer != null){
+                        customer.clearCart();
+                    }
                     System.out.println("Goodbye");
                     cont = false;
                     break;
@@ -121,7 +124,6 @@ public class Store {
                 case 4:
                     customer.proceedToCheckout();
                 case 5:
-                    customer.clearCart();
                     System.out.println("Logging out....");
                     cont = false;
                     break;
