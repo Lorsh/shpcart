@@ -137,7 +137,7 @@ public class Catalog implements Serializable {
     oos.close();
     }
     catch (IOException e) {
-    System.err.println("IO exception found");
+    System.err.println(e);
     }
     }   
      
