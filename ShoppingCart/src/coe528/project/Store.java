@@ -96,12 +96,12 @@ public class Store {
             System.out.print("Please enter a number: ");
             int i = 0;
             CustomerMenuNumber:
-            while(!(i >= 1 && i <= 4)){
+            while(!(i >= 1 && i <= 5)){
                 while(!s.hasNextInt()){
                     i = s.nextInt();
                 }
                 i = s.nextInt();
-                if(!(i >= 1 && i <= 4)){
+                if(!(i >= 1 && i <= 5)){
                         System.out.print("Invalid entry. Please try again: ");
                     }
                     else{

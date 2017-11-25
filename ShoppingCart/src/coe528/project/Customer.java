@@ -66,6 +66,8 @@ public class Customer implements Serializable {
         
         System.out.println("Please enter the name of the item you want to add the shopping cart: ");
         iName = s.next();
+        System.out.println("Please enter the condition of the item you want to add the shopping cart: ");
+        iCond = s.next();
         System.out.println("How many would you like have: ");
         while(!s.hasNextInt()){
             s.next();
@@ -74,9 +76,11 @@ public class Customer implements Serializable {
         
         if(Catalog.getInstance().getItem(iName, iCond) != null){
             shoppingCart.updateQuantity(amount, shoppingCart.getItem(iName, iCond));
+            System.out.println("Added " + amount + " " + iName + " to shopping cart");
         }
-        
-        System.out.println("Added " + amount + " " + iName + " to shopping cart");
+        else{
+            System.out.println("No such item was found.");
+        }
     }
     
         public void removeFromCart(){
@@ -89,17 +93,22 @@ public class Customer implements Serializable {
         
         System.out.println("Please enter the name of the item you want to remove the shopping cart: ");
         iName = s.next();
+        System.out.println("Please enter the condition of the item you want to add the shopping cart: ");
+        iCond = s.next();
         System.out.println("How many would you like have: ");
         while(!s.hasNextInt()){
             s.next();
         }
         amount = s.nextInt();
         
-        if(Catalog.getInstance().getItem(iName, iCond) != null){
+        if(shoppingCart.getItem(iName, iCond) != null){
             shoppingCart.updateQuantity(amount, shoppingCart.getItem(iName, iCond));
+            System.out.println("Removed " + amount + " " + iName + " to shopping cart");
+        }
+        else{
+            System.out.println("No such item was found.");
         }
         
-        System.out.println("Removed " + amount + " " + iName + " to shopping cart");
     }
     
     public void proceedToCheckout(){
