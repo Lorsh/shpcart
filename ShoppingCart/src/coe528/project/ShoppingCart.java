@@ -48,7 +48,17 @@ public class ShoppingCart implements Serializable{
         return subtotal;
     }
     
+    public int getNumberOfItems (String itemName, String condition) {
+    int acum = 0;
+        for (Item x : items) {
+            if (x.getName().equals(itemName) && x.getCondition().equals(condition)) {
+                acum++;
+            }
+        }
     
+    return acum;
+    
+    }
 
     public Order createOrder(ArrayList<Item> items, double subtotal) {
        Order y = new Order(items,subtotal);

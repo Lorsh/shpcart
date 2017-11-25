@@ -71,20 +71,41 @@ public class Customer implements Serializable {
         iCond = s.next();
         System.out.println("How many would you like have: ");
         while(!s.hasNextInt()){
-            s.next();
+            amount = s.nextInt();
         }
         amount = s.nextInt();
         
+        //Check if item exists based on string
+        item = Catalog.getInstance().getItem(iName, iCond);
+        if(item != null){
+            //check if the amount user requested is too high
+            i = Catalog.getInstance().getNumberOfItems(iName, iCond);
+            if(amount == i){
+                //adds to cart x number of times user specified
+                for(i = 0; i >= amount; i++){
+                    shoppingCart.addtoShoppingCart(item);
+                }
+                System.out.println(i + " " + iCond + " " + iName + " added to shopping cart.");
+            }
+            else{
+                System.out.println("Only " + i + " of " + iCond + " " + iName + " are available in the store.");
+            }
+        }
+        else{
+            System.out.println("No such item was found");
+        }
         
+        /**
         item = Catalog.getInstance().getItem(iName, iCond);
         if(item != null){
             shoppingCart.addtoShoppingCart(item);
             shoppingCart.updateQuantity(amount, item);
-            System.out.println("Removed " + amount + " " + iName + " to shopping cart");
+            System.out.println("Added " + amount + " " + iName + " to shopping cart");
         }
         else{
             System.out.println("No such item was found.");
         }
+        **/
     }
     
         public void removeFromCart(){
@@ -102,10 +123,31 @@ public class Customer implements Serializable {
         iCond = s.next();
         System.out.println("How many would you like have: ");
         while(!s.hasNextInt()){
-            s.next();
+            amount = s.nextInt();
         }
         amount = s.nextInt();
         
+        //check if item exist based on string
+        item = shoppingCart.getItem(iName, iCond);
+        if(item != null){
+            //check if the amount user requested is too high
+            i = shoppingCart.getNumberOfItems(iName, iCond);
+            if((i - amount) >= 0){
+                //adds to cart x number of times user specified
+                for(i = 0; i >= amount; i++){
+                    shoppingCart.removeFromShoppingCart(item);
+                }
+                System.out.println(i + " " + iCond + " " + iName + " removed from shopping cart.");
+            }
+            else{
+                System.out.println("Only up to " + i + " of " + iCond + " " + iName + " can be removed.");
+            }
+        }
+        else{
+            System.out.println("No such item was found.");
+        }
+        
+        /**
         item = Catalog.getInstance().getItem(iName, iCond);
         if(item != null){
             shoppingCart.addtoShoppingCart(item);
@@ -115,7 +157,7 @@ public class Customer implements Serializable {
         else{
             System.out.println("No such item was found.");
         }
-        
+        **/
     }
     
     public void proceedToCheckout(){
