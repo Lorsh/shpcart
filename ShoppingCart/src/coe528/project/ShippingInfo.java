@@ -26,7 +26,7 @@ public class ShippingInfo {
     private String name;
     
     
-    public ShippingInfo() {
+    public ShippingInfo(String name) {
     }
 
     public String getAddressStreet() {
