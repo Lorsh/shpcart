@@ -6,12 +6,10 @@
 
 # BlueJ files
 *.ctxt
-*.txt
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 # Netbeans files
-*.properties
-*.xml
+
 
 # Package Files #
 *.jar
