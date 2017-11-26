@@ -308,10 +308,6 @@ public class Customer implements Serializable {
     public void updateProfile(){
         shippingInfo.updateShippingInfo();
     }
-    
-    public void login() {
-        
-    }
 
      @Override
    public boolean equals(Object obj) {

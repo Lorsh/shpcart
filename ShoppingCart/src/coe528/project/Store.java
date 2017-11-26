@@ -27,16 +27,16 @@ public class Store {
         
         while(cont){
             CheckForCustomers:
-            System.out.println("\n\n------Main Menu------\n1: Login\n2: Use as Guest\n3: Exit\n----------------------");
+            System.out.println("\n\n------Main Menu------\n1: Use as Guest\n2: Exit\n----------------------");
             System.out.print("\nPlease enter a number: ");
             int i = 0;
             LoginMenuNumber:
-            while(!(i >= 1 && i <= 3)){
+            while(!(i >= 1 && i <= 2)){
                 while(!s.hasNextInt()){
                     i = s.nextInt();
                 }
                 i = s.nextInt();
-                if(!(i >= 1 && i <= 3)){
+                if(!(i >= 1 && i <= 2)){
                     System.out.print("Invalid entry. Please try again: ");
                 }
                 else{
@@ -45,40 +45,11 @@ public class Store {
             }
             switch (i) {
                 case 1:
-                //<editor-fold defaultstate="collapsed" desc="LOGIN SEQUENCE">
-                Scanner c = new Scanner(System.in);
-                String us;
-                String ps;
-                Login login;
-                do {
-                System.out.print("Enter username: ");
-                while(!s.hasNext()){
-                us = s.next();
-                }
-                us = s.next();
-                System.out.print("Enter password: ");
-                while(!s.hasNext()){
-                    ps = s.next();
-                }
-                ps = s.next();
-                
-                //username and password check
-                login = new Login(us,ps);
-                customer = login.getProf();
-                }
-                while(login.condition() == false);
-                //</editor-fold>
-        
-                System.out.println("\nCustomer login successful!\nEntering Main Menu.......\n");
-                customer = login.getProf();
-                mainMenu();
-                break;
-                case 2:
-                    login = new Login("guest","guest");
+                    Login login = new Login("guest","guest");
                     customer = login.getProf();
                     mainMenu();
                     break;
-                case 3:
+                case 2:
                     if(customer != null){
                         customer.clearCart();
                     }
