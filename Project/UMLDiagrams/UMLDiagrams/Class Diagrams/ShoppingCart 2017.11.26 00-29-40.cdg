@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ShoppingCart">
+  <ClassDiagramComponents>
+    <Class name="Catalog" package="coe528.project" visibility="public" xPosition="1131.0" yPosition="702.0">
+      <Fields>
+        <Field name="items" type="ArrayList&lt;Item&gt;" visibility="private" isStatic="true"/>
+        <Field name="instance" type="Catalog" visibility="private" isStatic="true"/>
+        <Field name="fileName" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="Catalog" visibility="public" isStatic="true"/>
+        <Method name="update" returnType="void" visibility="public"/>
+        <Method name="removeItemFromCatalog" returnType="void" visibility="public">
+          <Argument type="int" name="productID"/>
+        </Method>
+        <Method name="checkItemExist" returnType="boolean" visibility="public">
+          <Argument type="int" name="itemID"/>
+        </Method>
+        <Method name="clear" returnType="void" visibility="public"/>
+        <Method name="getItem" returnType="Item" visibility="public">
+          <Argument type="int" name="itemID"/>
+        </Method>
+        <Method name="getItemsFromBrowse" returnType="ArrayList&lt;Item&gt;" visibility="public">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="getItemsFromBrowse" returnType="Item[]" visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="String" name="itemCond"/>
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="String" name="condition"/>
+        </Method>
+        <Method name="getNumberOfItems" returnType="int" visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="String" name="condition"/>
+        </Method>
+        <Method name="addItemToCatalog" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Customer" package="coe528.project" visibility="public" xPosition="78.0" yPosition="413.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="creditCardInfo" type="String" visibility="private"/>
+        <Field name="shippingInfo" type="ShippingInfo" visibility="private"/>
+        <Field name="order" type="Order" visibility="private"/>
+        <Field name="shoppingCart" type="ShoppingCart" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="getCreditCardInfo" returnType="String" visibility="public"/>
+        <Method name="getShoppingCart" returnType="ShoppingCart" visibility="public"/>
+        <Method name="clearCart" returnType="void" visibility="public"/>
+        <Method name="addToCart" returnType="void" visibility="public"/>
+        <Method name="removeFromCart" returnType="void" visibility="public"/>
+        <Method name="proceedToCheckout" returnType="void" visibility="public"/>
+        <Method name="browseCatalog" returnType="void" visibility="public"/>
+        <Method name="viewOrder" returnType="void" visibility="public"/>
+        <Method name="viewCart" returnType="void" visibility="public"/>
+        <Method name="updateProfile" returnType="void" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Database" package="coe528.project" visibility="public" xPosition="1039.0" yPosition="191.0">
+      <Fields>
+        <Field name="profiles" type="ArrayList&lt;Customer&gt;" visibility="private" isStatic="true"/>
+        <Field name="instance" type="Database" visibility="private" isStatic="true"/>
+        <Field name="fileName" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="Database" visibility="public" isStatic="true"/>
+        <Method name="update" returnType="void" visibility="public"/>
+        <Method name="getProfiles" returnType="ArrayList&lt;Customer&gt;" visibility="public" isStatic="true"/>
+        <Method name="setProfiles" returnType="void" visibility="public" isStatic="true">
+          <Argument type="ArrayList&lt;Customer&gt;" name="profiles"/>
+        </Method>
+        <Method name="getFileName" returnType="String" visibility="public"/>
+        <Method name="checkCustomerExist" returnType="boolean" visibility="public">
+          <Argument type="String" name="user"/>
+        </Method>
+        <Method name="authenticateCustomer" returnType="boolean" visibility="public">
+          <Argument type="String" name="user"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+        <Method name="getProfile" returnType="Customer" visibility="public">
+          <Argument type="String" name="user"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+        <Method name="addProfileToDB" returnType="void" visibility="public">
+          <Argument type="Customer" name="prof"/>
+        </Method>
+        <Method name="removeProfileFromDB" returnType="void" visibility="public">
+          <Argument type="String" name="usr"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Item" package="coe528.project" visibility="public" xPosition="1573.0" yPosition="1267.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="condition" type="String" visibility="private"/>
+        <Field name="productID" type="int" visibility="private" isFinal="true"/>
+        <Field name="price" type="double" visibility="private"/>
+        <Field name="IDCounter" type="int" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="condition"/>
+          <Argument type="double" name="price"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getCondition" returnType="String" visibility="public"/>
+        <Method name="getProductID" returnType="int" visibility="public"/>
+        <Method name="getPrice" returnType="double" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Login" package="coe528.project" visibility="public" xPosition="540.0" yPosition="134.0">
+      <Fields>
+        <Field name="prof" type="Customer" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="condition" returnType="boolean" visibility="public"/>
+        <Method name="getProf" returnType="Customer" visibility="public"/>
+        <Method name="setProf" returnType="void" visibility="public">
+          <Argument type="Customer" name="prof"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Order" package="coe528.project" visibility="public" xPosition="1648.0" yPosition="394.0">
+      <Fields>
+        <Field name="orderIDCounter" type="int" visibility="private" isStatic="true"/>
+        <Field name="dateGen" type="String" visibility="private" isFinal="true"/>
+        <Field name="threshold" type="double" visibility="private" isFinal="true"/>
+        <Field name="datePattern" type="String" visibility="private" isFinal="true"/>
+        <Field name="items" type="ArrayList&lt;Item&gt;" visibility="private" isFinal="true"/>
+        <Field name="orderID" type="int" visibility="private" isFinal="true"/>
+        <Field name="currentState" type="OrderState" visibility="private" isFinal="true"/>
+        <Field name="OverThreshold" type="OrderState" visibility="private"/>
+        <Field name="UnderThreshold" type="OrderState" visibility="private"/>
+        <Field name="subtotal" type="double" visibility="private" isFinal="true"/>
+        <Field name="shipInfo" type="ShippingInfo" visibility="private" isFinal="true"/>
+        <Field name="totalCost" type="double" visibility="private" isFinal="true"/>
+        <Field name="shippingCost" type="double" visibility="private" isFinal="true"/>
+        <Field name="taxCost" type="double" visibility="private" isFinal="true"/>
+        <Field name="expectedArrival" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;Item&gt;" name="items"/>
+          <Argument type="double" name="subtotal"/>
+          <Argument type="ShippingInfo" name="shipInfo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="calculateDateGen" returnType="String" visibility="private">
+          <Argument type="DateTimeFormatter" name="formatter"/>
+        </Method>
+        <Method name="calculateDateOfArrival" returnType="String" visibility="private">
+          <Argument type="DateTimeFormatter" name="formatter"/>
+        </Method>
+        <Method name="getDateGen" returnType="String" visibility="public"/>
+        <Method name="getOrderID" returnType="int" visibility="public"/>
+        <Method name="getExpectedArrival" returnType="String" visibility="public"/>
+        <Method name="calculateTax" returnType="double" visibility="public">
+          <Argument type="double" name="price"/>
+        </Method>
+        <Method name="calculateShipping" returnType="double" visibility="public">
+          <Argument type="double" name="subtotal"/>
+          <Argument type="ArrayList&lt;Item&gt;" name="shippingCost"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="OverThreshold" package="coe528.project" visibility="public" xPosition="2103.0" yPosition="714.0">
+      <Fields>
+        <Field name="shippingCost" type="double" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="calculateShipping" returnType="double" visibility="public">
+          <Argument type="double" name="subtotal"/>
+          <Argument type="ArrayList&lt;Item&gt;" name="items"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ShippingInfo" package="coe528.project" visibility="public" xPosition="292.0" yPosition="1163.0">
+      <Fields>
+        <Field name="addressStreet" type="String" visibility="private"/>
+        <Field name="addressCity" type="String" visibility="private"/>
+        <Field name="addressProvince" type="String" visibility="private"/>
+        <Field name="addressPostal" type="String" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAddressStreet" returnType="String" visibility="public"/>
+        <Method name="setAddressStreet" returnType="void" visibility="public">
+          <Argument type="String" name="addressStreet"/>
+        </Method>
+        <Method name="getAddressCity" returnType="String" visibility="public"/>
+        <Method name="setAddressCity" returnType="void" visibility="public">
+          <Argument type="String" name="addressCity"/>
+        </Method>
+        <Method name="getAddressProvince" returnType="String" visibility="public"/>
+        <Method name="getAddressPostal" returnType="String" visibility="public"/>
+        <Method name="setAddressPostal" returnType="void" visibility="public">
+          <Argument type="String" name="addressPostal"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="updateShippingInfo" returnType="void" visibility="public"/>
+        <Method name="repOK" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ShoppingCart" package="coe528.project" visibility="public" xPosition="834.0" yPosition="1267.0">
+      <Fields>
+        <Field name="shoppingID" type="int" visibility="private" isStatic="true"/>
+        <Field name="items" type="ArrayList&lt;Item&gt;" visibility="private"/>
+        <Field name="subtotal" type="double" visibility="private"/>
+        <Field name="catalog" type="Catalog" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getshoppingID" returnType="int" visibility="public"/>
+        <Method name="addtoShoppingCart" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="removeAllItemsInShoppingCart" returnType="void" visibility="public"/>
+        <Method name="deliverItems" returnType="void" visibility="public"/>
+        <Method name="getItems" returnType="ArrayList&lt;Item&gt;" visibility="public"/>
+        <Method name="updateSubTotal" returnType="double" visibility="public"/>
+        <Method name="getSubtotal" returnType="double" visibility="public"/>
+        <Method name="getNumberOfItems" returnType="int" visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="String" name="condition"/>
+        </Method>
+        <Method name="createOrder" returnType="Order" visibility="public">
+          <Argument type="ArrayList&lt;Item&gt;" name="items"/>
+          <Argument type="double" name="subtotal"/>
+          <Argument type="ShippingInfo" name="shipInfo"/>
+        </Method>
+        <Method name="removeFromShoppingCart" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="updateQuantity" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="getItemsFromBrowse" returnType="Item[]" visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="String" name="itemCond"/>
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="String" name="condition"/>
+        </Method>
+        <Method name="TotalShoppingNumber" returnType="int" visibility="public"/>
+        <Method name="viewCartDetails" returnType="String" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Store" package="coe528.project" visibility="public" xPosition="608.0" yPosition="899.0">
+      <Fields>
+        <Field name="customer" type="Customer" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="mainMenu" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="UnderThreshold" package="coe528.project" visibility="public" xPosition="2103.0" yPosition="1352.0">
+      <Fields>
+        <Field name="shippingCost" type="double" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="calculateShipping" returnType="double" visibility="public">
+          <Argument type="double" name="subtotal"/>
+          <Argument type="ArrayList&lt;Item&gt;" name="items"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="OrderState" package="coe528.project" visibility="public" xPosition="2103.0" yPosition="1176.0">
+      <Methods>
+        <Method name="calculateShipping" returnType="double" visibility="public">
+          <Argument type="double" name="subtotal"/>
+          <Argument type="ArrayList&lt;Item&gt;" name="items"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="customer" source="coe528.project.Store" target="coe528.project.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.ShoppingCart" target="coe528.project.ShippingInfo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="OverThreshold" source="coe528.project.Order" target="coe528.project.OrderState" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="prof" source="coe528.project.Login" target="coe528.project.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.OrderState" target="coe528.project.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="coe528.project.Database" target="coe528.project.Database" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.OverThreshold" target="coe528.project.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.Login" target="coe528.project.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="items" source="coe528.project.ShoppingCart" target="coe528.project.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Item&gt;"/>
+    <UseRelation source="coe528.project.Database" target="coe528.project.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="items" source="coe528.project.Order" target="coe528.project.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Item&gt;"/>
+    <HasRelation name="profiles" source="coe528.project.Database" target="coe528.project.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Customer&gt;"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="coe528.project.OverThreshold" target="coe528.project.OrderState"/>
+    <HasRelation name="shoppingCart" source="coe528.project.Customer" target="coe528.project.ShoppingCart" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.Order" target="coe528.project.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="catalog" source="coe528.project.ShoppingCart" target="coe528.project.Catalog" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.UnderThreshold" target="coe528.project.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="order" source="coe528.project.Customer" target="coe528.project.Order" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.Database" target="coe528.project.Database" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.ShoppingCart" target="coe528.project.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.Catalog" target="coe528.project.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.Catalog" target="coe528.project.Catalog" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="coe528.project.Customer" target="coe528.project.ShoppingCart" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="UnderThreshold" source="coe528.project.Order" target="coe528.project.OrderState" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="coe528.project.Catalog" target="coe528.project.Catalog" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="shippingInfo" source="coe528.project.Customer" target="coe528.project.ShippingInfo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentState" source="coe528.project.Order" target="coe528.project.OrderState" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="coe528.project.UnderThreshold" target="coe528.project.OrderState"/>
+    <HasRelation name="shipInfo" source="coe528.project.Order" target="coe528.project.ShippingInfo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="items" source="coe528.project.Catalog" target="coe528.project.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Item&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
