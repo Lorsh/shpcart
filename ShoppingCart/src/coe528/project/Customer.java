@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.InputMismatchException;
+import java.util.regex.Matcher;
 
 public class Customer implements Serializable {
 
@@ -213,8 +214,9 @@ public class Customer implements Serializable {
         Scanner s = new Scanner(System.in);
         String cmd = null;
         ArrayList<Item> browsed;
-        String regx = "^([A-Z][a-z]+)(\\s*[A-Z][a-z]+)?";
-        Pattern pattern = Pattern.compile(".*");
+        String regx = "^([A-Za-z]+) ?([A-za-z]+)?";
+        Pattern ptrn = Pattern.compile(regx);
+        Matcher matcher;
         
         boolean cont = true;
         while(cont){
@@ -237,20 +239,25 @@ public class Customer implements Serializable {
             switch (i) {
                 case 1:
                     System.out.print("\nPlease input item name: ");
+                    /**
                     while(!s.hasNext(pattern)){
                         System.out.print("\nInput name is invalid. Please try again: ");
                         s.next();
                     }
                     cmd = s.next(pattern);
-                        /**
-                        try {
-                           cmd = s.next(pattern);
+                    **/
+                    cmd = s.nextLine();
+                    matcher = ptrn.matcher(cmd);
+                    while(!matcher.matches()){
+                        cmd = s.nextLine();
+                        matcher = ptrn.matcher(cmd);
+                        if(!matcher.matches()){
+                            System.out.print("Invalid entry. Please try again: ");
                         }
-                        catch (InputMismatchException e) {
-                            //s.reset();
-                            System.out.println("Input name is invalid");    
+                        else{
+                            break;
                         }
-                        **/
+                    }
                     browsed = Catalog.getInstance().getItemsFromBrowse(cmd);
                     
                     //prints the search results
@@ -267,7 +274,7 @@ public class Customer implements Serializable {
                         removeFromCart();
                     }
                     else{
-                        System.out.println("You don't have any items to remove from shopping cart");
+                        System.out.println("You don't have any items to remove from your shopping cart.");
                     }
                     break;
                 case 4:
@@ -285,7 +292,7 @@ public class Customer implements Serializable {
         System.out.println(order.toString());
         }
         catch (NullPointerException e) {
-            System.err.println("No order exists yet");
+            System.err.println("No order exists yet.");
         }
     }
     
