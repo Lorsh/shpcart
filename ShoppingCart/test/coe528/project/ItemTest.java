@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class ItemTest {
     
-    Item testItem =  new Item("testName", "testCond", 5, 100);
+    Item testItem =  new Item("testName", "testCond", 100);
     
     public ItemTest() {
     }
@@ -45,7 +45,7 @@ public class ItemTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object obj = new Item("testName", "testCond", 1, 200);
+        Object obj = new Item("testName", "testCond", 200);
         Item instance = testItem;
         boolean expResult = true;
         boolean result = instance.equals(obj);

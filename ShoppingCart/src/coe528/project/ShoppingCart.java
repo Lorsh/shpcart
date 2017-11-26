@@ -160,9 +160,7 @@ public class ShoppingCart implements Serializable{
     }
 
     public String viewCartDetails() { // changed the return type to string 
-        // change in the string
-        //int shoppingTotal = items.size();---------------------------------------------------------------------+
-       String cartDetail;
+        String cartDetail;
        cartDetail = "Shopping ID is"  +getshoppingID()+ "Number of Items" +TotalShoppingNumber()+ "Subtotal" +updateSubTotal();
        System.out.println(cartDetail);
         return cartDetail;
