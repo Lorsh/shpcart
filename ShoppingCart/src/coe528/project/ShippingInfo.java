@@ -6,21 +6,19 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ShippingInfo implements Serializable {
-    
-    /**
-     * Overview: ShippingInfo holds various fields of String that hold
-     * information on the location of an order or a customer. These fields
-     * should not be "Empty". It is mutable.
-     * 
-     * Abstraction Function:
-     * AF(c): A series of String indicating name, address, city, and postal code
-     * 
-     * The rep invariant is:
-     * c.field.equals("Empty") != true; where field is an instance mutable variable
-     * 
-     */
 
+/**
+ * Overview: ShippingInfo holds various fields of String that hold
+ * information on the location of an order or a customer. These fields
+ * should not be "Empty". It is mutable.
+ * 
+ * Abstraction Function:
+ * AF(c): A series of String indicating name, address, city, and postal code
+ * 
+ * The rep invariant is:
+ * c.field.equals("Empty") != true; where field is an instance mutable variable
+ */
+public class ShippingInfo implements Serializable {
     
     private String addressStreet = "Empty";
     
@@ -351,6 +349,11 @@ public class ShippingInfo implements Serializable {
         else return true;
     }
     
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns a String containing a name street address, city, province, and postal code. 
+     * @return 
+     */
     @Override
     public String toString() {
         return name+"\n"+addressStreet+"\n"+addressCity+", "+addressProvince+"\n"+addressPostal;

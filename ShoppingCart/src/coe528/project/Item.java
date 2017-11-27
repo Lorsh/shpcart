@@ -2,21 +2,21 @@ package coe528.project;
 
 import java.io.Serializable;
 
+/**
+ * Overview: Item holds various fields of information that define a product
+ * in the store of an order or a customer.  The condition must be "New" or
+ * "Used". The price cannot be negative. The name must be more than the
+ * 0 string. It is immutable.
+ * 
+ * Abstraction Function:
+ * AF(c): A series of fields indicating name, condition, price, and 
+ * product ID of product in the store.
+ * 
+ * The rep invariant is:
+ * c.name.length() greater than 0 AND c.price greater than or equal to 0 AND (c.condition.equals("New") OR c.condition.equals("Used"))
+ */
 public class Item implements Serializable{
-    /**
-     * Overview: Item holds various fields of information that define a product
-     * in the store of an order or a customer.  The condition must be "New" or
-     * "Used". The price cannot be negative. The name must be more than the
-     * 0 string. It is immutable.
-     * 
-     * Abstraction Function:
-     * AF(c): A series of fields indicating name, condition, price, and 
-     * product ID of product in the store.
-     * 
-     * The rep invariant is:
-     * c.name.length() > 0 && c.price >= 0 && (c.condition.equals("New") || c.condition.equals("Used"))
-     * 
-     */
+    
     private String name;
 
     private String condition;
@@ -107,6 +107,11 @@ public class Item implements Serializable{
         }
     }
     
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns a String containing the name, price, condition, and product ID of the object.
+     * @return 
+     */
     @Override
     public String toString() {
         return "Name: "+name+ "\t\tPrice: "+price+"\t\tCondition: "+condition+"\t\tProduct ID: "+productID;

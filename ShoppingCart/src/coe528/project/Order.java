@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * 
+ */
 public class Order {
+
     static private int orderIDCounter= 0;
     
     private final String dateGen;  // date in which order was generated

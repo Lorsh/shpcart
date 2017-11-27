@@ -8,12 +8,22 @@ package coe528.project;
 import java.util.Scanner;
 
 /**
+ * Overview: This is the main class of the program. It allows the user of this program
+ * to act as a guest to use the store once the program starts. It's state is a summary of the catalog and the current user.
+ * 
+ * Abstract Function:
+ * AF(c) s.t. customer in a store
+ * 
+ * The rep invariant is:
+ * customer != null
  *
- * @author mshakul
  */
 public class Store {
+    
     static Customer customer = null;
     /**
+     * MODIFIES: customer
+     * EFFECTS: initializes customer to non-null value, or exit program
      * @param args the command line arguments //
      */
     public static void main(String[] args) {
@@ -67,6 +77,10 @@ public class Store {
         }
     }
     
+    /**
+     * MODIFIES: customer, catalog
+     * EFFECTS: Browse Catalog, See the customer's order, see the customer's shopping cart, modify the customer's shippingInfo, modify the customer's order, logout from the system.
+     */
     public static void mainMenu(){
         Scanner s = new Scanner(System.in);
         boolean cont = true;
@@ -121,5 +135,22 @@ public class Store {
                     break;
             }
         }
+    }
+    
+    /**
+     * MODIFIES: none 
+     * EFFECTS: returns true if the rep invariant holds true for this object; otherwise false
+     * @return 
+     */
+    public boolean repOK(){
+        return customer != null;
+    }
+    
+    @Override
+    public String toString(){
+        String object = null;
+        object.concat("------------Welcome to ChimpGorden's Shopping Terminal-------------\nYour current info is:\n");
+        
+        return "";
     }
 }

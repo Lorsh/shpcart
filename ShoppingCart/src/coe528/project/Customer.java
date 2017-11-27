@@ -8,15 +8,20 @@ import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 
 
-
+/**
+ * Overview: Customer is a collection of all info and changes about
+ * the current user/Actor of the program. It must have a name and password and
+ * only one shopping cart.
+ * 
+ * AF(c)
+ */
 public class Customer implements Serializable {
     
     /**
     *
-    * Customer is a collection of all info and changes about
-    * the current user/Actor of the program.
+
     * 
-    * S
+    * 
     */
     
     private String name;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * that is initially empty. It temporarily stores items that the customer wants
  * to purchase and their subtotal.
  * 
- * Th abstraction function is:
+ * The abstraction function is:
  * AF(c): An ArrayList of unique items
  * 
  * The rep invariant is:
@@ -183,7 +183,6 @@ public class ShoppingCart implements Serializable{
     
     }
     
-    
   /** 
    * MODIFIES: none
    * EFFECTS: returns Item object corresponding to the name of the item and its condition if it exists.   
@@ -247,7 +246,12 @@ public class ShoppingCart implements Serializable{
         }
         return true;
         }
- 
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns a String that shows all the toString() of every item in object's ArrayList items, as well as the subtotal and number of items in the object's ArrayList items.
+     * @return 
+     */
     public String toString() {
         String a = "----------Shopping Cart Summary----------\n";
         String s = "";
