@@ -7,64 +7,117 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ShippingInfo implements Serializable {
+    
+    /**
+     * Overview: ShippingInfo holds various fields of String that hold
+     * information on the location of an order or a customer. These fields
+     * should not be "Empty". It is mutable.
+     * 
+     * Abstraction Function:
+     * AF(c): A series of String indicating name, address, city, and postal code
+     * 
+     * The rep invariant is:
+     * c.field.equals("Empty") != true; where field is an instance mutable variable
+     * 
+     */
 
-    //private int shippingID;
-
-    //private String shippngType;
-
-    //private int shippingCost;
-
-    //private int shippingRegionID;
-
-    //private Calendar expectedArrival;
     
     private String addressStreet = "Empty";
     
     private String addressCity = "Empty";
     
-    private String addressProvince = "Empty";
+    private final String addressProvince = "Ontario";
     
     private String addressPostal = "Empty";
     
     private String name;
     
-    
+    /**
+     * MODIFIES: name
+     * EFFECTS: initializes the String instance name to new value
+     * @param name 
+     */
     public ShippingInfo(String name) {
         this.name = name;
     }
 
+    /**
+     * MODFIES: none
+     * EFFECTS: returns the String addressStreet
+     * @return 
+     */
     public String getAddressStreet() {
         return addressStreet;
     }
 
+    /**
+     * MODFIES: none
+     * EFFECTS: returns the String addressStreet
+     * @param addressStreet
+     */
     public void setAddressStreet(String addressStreet) {
         this.addressStreet = addressStreet;
     }
 
+    /**
+     * MODFIES: none
+     * EFFECTS: returns the String addressCity
+     * @return 
+     */
     public String getAddressCity() {
         return addressCity;
     }
-
+    
+    /**
+     * MODFIES: none
+     * EFFECTS: assigns the instance addressCity to a new value
+     * @param addressCity
+     */
     public void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
     }
-
+    
+    /**
+     * MODFIES: none
+     * EFFECTS: returns the String addressProvince
+     * @return 
+     */
     public String getAddressProvince() {
         return addressProvince;
     }
-
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: return the String addressPostal
+     * @return 
+     */
     public String getAddressPostal() {
         return addressPostal;
     }
-
+    
+    /**
+     * MODIFIES: addressPostal
+     * EFFECTS: assigns the String instance addressPostal a new value
+     * @param addressPostal 
+     */
     public void setAddressPostal(String addressPostal) {
         this.addressPostal = addressPostal;
     }
-
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: return the String name
+     * @return 
+     */
     public String getName() {
         return name;
     }
-
+    
+    /**
+     * MODIFIES: name
+     * EFFECTS: assigns the String instance name a new value
+     * @param name 
+     */
     public void setName(String name) {
         this.name = name;
     }
@@ -92,10 +145,14 @@ public class ShippingInfo implements Serializable {
         SelectBreak:
         while(!(i >= 1 && i <= 4)){
             while(!s.hasNextInt()){
+                System.out.print("Invalid entry. Please try again: ");
                 s.next();
             }
-            i = s.nextInt();
-            if(!(i >= 1 && i <= 3)){
+            try{
+                i = s.nextInt();
+            } catch(Exception e){
+            }
+            if(!(i >= 1 && i <= 4)){
                 System.out.print("Invalid entry. Please try again: ");
             }
             else{
@@ -228,11 +285,11 @@ public class ShippingInfo implements Serializable {
         if(!(i == 4)){
             String cont;
             boolean cont2;
-            System.out.println("Review info:");
+            System.out.println("\nReview info:");
             
             if(i == 1){
                 System.out.println("Name: "+n+"\tStreet Address: "+this.addressStreet+"\tCity: "+this.addressCity+"\t\tPostal Code: "+this.addressPostal);
-                System.out.print("Is the above info OK? Press Y/N (y/n): ");
+                System.out.print("\nIs the above info OK? Press Y/N (y/n): ");
                 while(!s.hasNext("[NnYy]")){
                     s.next();
                 }
@@ -271,40 +328,6 @@ public class ShippingInfo implements Serializable {
                     System.out.println("Shipping information successfully updated!");
                 }
             }
-            /**
-            System.out.println("Name: "+n+"\tStreet Address: "+aS+"\tCity: "+aC+"\tPostal Code: "+aPo);
-            System.out.print("Is the above info OK? Press Y/N (y/n): ");
-            while(!s.hasNext("[NnYy]")){
-                s.next();
-            }
-            cont = s.next();
-            
-            if(cont.equals("Y") || cont.equals("y")){
-                this.setName(n);
-                this.setAddressStreet(aS);
-                this.setAddressCity(aC);
-                this.setAddressPostal(aPo);
-                System.out.println("Shipping information successfully updated!");
-            }
-            else{
-                /**
-                if(i == 1){
-                    this.setName("Empty");
-                }
-                if(i == 2){
-                    this.setAddressStreet("Empty");
-                    this.setAddressCity("Empty");
-                    this.setAddressPostal("Empty");
-                }
-                if(i == 3){
-                    this.setName("Empty");
-                    this.setAddressStreet("Empty");
-                    this.setAddressCity("Empty");
-                    this.setAddressPostal("Empty");
-                }
-                 
-            }
-            **/
         }
         else{
             System.out.println("Exiting shipping info update...");

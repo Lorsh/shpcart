@@ -21,7 +21,7 @@ public class Catalog implements Serializable {
     // 
     // The rep invariant is:  
     // b) Write the rep invariant here 
-    //  c.items.purchaseID != c.items.purhcaseID for every integer x and y where x != y
+    //  c.items.productID != c.items.productID for every integer x and y where x != y
     //  
     //  
     // 
@@ -110,10 +110,11 @@ public class Catalog implements Serializable {
      
     
     }
-    /** MODIFIES: instance variable
-        EFFECTS: Creates an instance of Catalog in the Catalog class if it doesn't exist already.
-    
-    **/
+       /**
+        * MODIFIES: instance variable
+        * EFFECTS: Creates an instance of Catalog in the Catalog class if it doesn't exist already.
+        * @return 
+        */
        public static Catalog getInstance()  {
         if (instance == null) {
             try {

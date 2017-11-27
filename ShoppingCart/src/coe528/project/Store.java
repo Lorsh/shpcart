@@ -33,9 +33,14 @@ public class Store {
             LoginMenuNumber:
             while(!(i >= 1 && i <= 2)){
                 while(!s.hasNextInt()){
-                    i = s.nextInt();
+                    System.out.print("Invalid entry. Please try again: ");
+                    s.next();
                 }
-                i = s.nextInt();
+                try{
+                    i = s.nextInt();
+                } catch (Exception e){
+                    System.out.print("Invalid entry. Please try again: ");
+                } 
                 if(!(i >= 1 && i <= 2)){
                     System.out.print("Invalid entry. Please try again: ");
                 }
@@ -72,9 +77,13 @@ public class Store {
             CustomerMenuNumber:
             while(!(i >= 1 && i <= 6)){
                 while(!s.hasNextInt()){
-                    i = s.nextInt();
+                    System.out.print("Invalid entry. Please try again: ");
+                    s.next();
                 }
-                i = s.nextInt();
+                try{
+                    i = s.nextInt();
+                } catch(Exception e){
+                }
                 if(!(i >= 1 && i <= 6)){
                         System.out.print("Invalid entry. Please try again: ");
                     }
@@ -107,7 +116,7 @@ public class Store {
                 case 6:
                     System.out.println("Logging out....");
                     cont = false;
-                     break;
+                    break;
                 default:
                     break;
             }

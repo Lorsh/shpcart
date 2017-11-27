@@ -88,7 +88,9 @@ public class Order {
     
     @Override
     public String toString(){
-        String output = shipInfo.toString() + "\n";
+        String header = "---------------------Order Summary---------------------\n";
+        String footer = "-------------------------------------------------------\n";
+        String output = header + shipInfo.toString() + "\n";
         for (Item x : items) {
             output = output.concat(x.toString() + "\n");
         }
@@ -97,6 +99,7 @@ public class Order {
         output = output.concat("Tax: "  + truncated_taxCost + "\n");
         String truncated_totalCost = (String ) String.format("%.2f",totalCost );
         output = output.concat("Total cost: "  + truncated_totalCost + "\n");
+        output = output.concat(footer);
         return output;
     }
     
