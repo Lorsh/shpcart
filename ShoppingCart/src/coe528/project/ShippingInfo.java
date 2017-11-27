@@ -332,14 +332,22 @@ public class ShippingInfo implements Serializable {
         else{
             System.out.println("Exiting shipping info update...");
         }         
-    }    
-        public boolean repOK(){
+    }   
+    
+    /**
+     * MODIFIES:
+     * EFFECTS: returns true if the rep invariant holds for this object; otherwise returns false
+     * @return 
+     */
+    public boolean repOK(){
         String empty = "Empty";
         if (addressStreet.equals(empty) || addressCity.equals(empty) || addressProvince.equals(empty) || addressPostal.equals(empty)) {
             return false;
         }
         else return true;
     }
+    
+    @Override
     public String toString() {
         return name+"\n"+addressStreet+"\n"+addressCity+", "+addressProvince+"\n"+addressPostal;
     }    

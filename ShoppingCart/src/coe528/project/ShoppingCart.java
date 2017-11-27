@@ -28,23 +28,38 @@ public class ShoppingCart implements Serializable{
 
     private Catalog catalog = Catalog.getInstance();
     
+    /**
+     * MODIFIES: items, shoppingID
+     * EFFECTS: initializes the instance ArrayList items, and increments the instance integer shoppingID by 1.
+     */
     public ShoppingCart(){
         this.items = new ArrayList<Item>(); 
         shoppingID++;
     }
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: return integer instance shoppingID
+     * @return 
+     */
     public int getshoppingID(){
         return shoppingID; // getting the ID of the item
     }
+    
+    /**
+     * MODIFIES: items, catalog, subtotal
+     * EFFECTS: adds an item to the ArrayList instance item. removes the same item from catalog.items ArrayList. Updates the subtotal accordingly.
+     * @param item 
+     */
     public void addtoShoppingCart(Item item){
-        
         items.add(item);
         catalog.removeItemFromCatalog(item.getProductID());
         subtotal = updateSubTotal();
     }
     
     /**
-     * MODIFIES: 
-     * EFFECTS: 
+     * MODIFIES: items
+     * EFFECTS: removes every item in the ArrayList instance items
      */
     public void removeAllItemsInShoppingCart(){
         ArrayList<Item> I = new ArrayList<Item>();
@@ -112,7 +127,7 @@ public class ShoppingCart implements Serializable{
             }
         }
     
-    return acum;
+        return acum;
     
     }
 
@@ -184,7 +199,12 @@ public class ShoppingCart implements Serializable{
     return null;
     
     }
-   
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns an integer equivalent to the size the ArrayList items
+     * @return 
+     */
     public int TotalShoppingNumber(){
         try{
         return items.size();
@@ -193,8 +213,13 @@ public class ShoppingCart implements Serializable{
             System.out.println("No items in shopping cart");
             return 0;
         }
-    }
-
+}
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: prints a string and returns it
+     * @return 
+     */
     public String viewCartDetails() { // changed the return type to string 
         // change in the string
         //int shoppingTotal = items.size();---------------------------------------------------------------------+
