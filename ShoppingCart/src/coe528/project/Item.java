@@ -27,6 +27,13 @@ public class Item implements Serializable{
     
     private static int IDCounter = 0;
 
+    /**
+     * MODIFES: name, condition, productID, price, IDCounter
+     * EFFECTS: initializes name, condition and price. IDCounter is incremented by 1, and productID is initialized to IDCounter
+     * @param name
+     * @param condition
+     * @param price 
+     */
     public Item(String name, String condition, double price) {
         IDCounter++;
         this.name = name;
@@ -35,22 +42,48 @@ public class Item implements Serializable{
         this.price = price;
     }
     
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the String instance name
+     * @return 
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * MODIFES: none
+     * EFFECTS: returns the String instance condition
+     * @return 
+     */
     public String getCondition() {
         return condition;
     }
-
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the int instance productID
+     * @return 
+     */
     public int getProductID() {
         return productID;
     }
-
+    
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the double instance price
+     * @return 
+     */
     public double getPrice() {
         return price;
     }
     
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns true if obj's name and condition are not equal
+     * @param obj
+     * @return 
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Item && ((Item)obj).getName() == this.name && ((Item)obj).getCondition() == this.condition){
@@ -60,7 +93,11 @@ public class Item implements Serializable{
             return false;
         }
     }
-    
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns true if the rep invariant holds for this object; otherwise returns false
+     * @return 
+     */
     public boolean repOK(){
         if(price >= 0 && (condition.equals("New") || condition.equals("Used")) && name.length() > 0){
             return true;

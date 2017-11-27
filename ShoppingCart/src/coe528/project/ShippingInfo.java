@@ -335,7 +335,7 @@ public class ShippingInfo implements Serializable {
     }   
     
     /**
-     * MODIFIES:
+     * MODIFIES: none
      * EFFECTS: returns true if the rep invariant holds for this object; otherwise returns false
      * @return 
      */
