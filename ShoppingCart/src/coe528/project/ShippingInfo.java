@@ -122,6 +122,10 @@ public class ShippingInfo implements Serializable {
         this.name = name;
     }
 
+    /**
+     * MODIFIES: addressCity, addressStreet, addressPostal, name
+     * EFFECTS: assigns name, addressCity, addressStreet, and/or addressPostal a new value based on user's choice
+     */
     public void updateShippingInfo() {
         Scanner s = new Scanner(System.in);
         int i = -1;

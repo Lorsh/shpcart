@@ -33,6 +33,12 @@ public class Customer implements Serializable {
     
     private ShoppingCart shoppingCart;
 
+    /**
+     * MODIFIES: name, password, email, shippingInfo, creditCardInfo, order, shoppingCart
+     * EFFECTS: initializes name, password, email, shippingInfo, creditCardInfo, order, shoppingCart
+     * @param name
+     * @param password 
+     */
     public Customer(String name, String password) {
         this.name = name;
         this.password = password;
@@ -44,32 +50,63 @@ public class Customer implements Serializable {
         this.shippingInfo = new ShippingInfo(this.name);
     }
 
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the String instance name
+     * @return 
+     */
     public String getName() {
         return name;
     }
-    
-     public String getPassword() {
+
+    /**
+     * MODIFIES: none 
+     * EFFECTS: returns the String instance password
+     * @return 
+     */
+    public String getPassword() {
         return password;
     }
 
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the String instance email
+     * @return 
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the String instance creditCardInfo
+     * @return 
+     */
     public String getCreditCardInfo() {
         return creditCardInfo;
     }
 
+    /**
+     * MODIFIES: none
+     * EFFECTS: returns the String instance shoppingCart
+     * @return 
+     */
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
     
+    /**
+     * MODIFIES: shoppingCart
+     * EFFECTS: removes every item in shoppingCarts ArrayList items
+     */
     public void clearCart(){
         shoppingCart.removeAllItemsInShoppingCart();
     }
-    
-    // User seen products
-    // User choosing products by this stage
+
+    /**
+     * MODIFIES: shoppingCart 
+     * EFFECTS: an amount of specific items are added to the shoppingCart's ArrayList items as specified by the user based on the name and condition
+     */
     public void addToCart(){
         int amount = -1;
         int i;
@@ -116,7 +153,11 @@ public class Customer implements Serializable {
         }
     }
     
-        public void removeFromCart(){
+    /**
+     * MODIFIES: shoppingCart
+     * EFFECTS: an amount of specific items are removed from the shoppingCart's ArrayList items as specified by the user based on the name and condition
+     */
+    public void removeFromCart(){
         int amount = -1;
         int i;
         String iName;
@@ -161,6 +202,10 @@ public class Customer implements Serializable {
         }
     }
     
+    /**
+     * MODIFIES: shoppingCart, order 
+     * EFFECTS: attempts to assigns the instance order object a new non null value and empty the shoppingCart's ArrayList items if successful
+     */
     public void proceedToCheckout () {
         boolean cont = false;
         String sc = null;
@@ -202,6 +247,10 @@ public class Customer implements Serializable {
         }
     }
  
+    /**
+     * MODIFIES: can modify shoppingCart
+     * EFFECTS: Allows user to search an item in the catalog, add item(s) to the shoppingCart's ArrayList item, remove item(s) from the shoppingCart's ArrayList item, or exit method
+     */
     public void browseCatalog(){
         Scanner s = new Scanner(System.in);
         String cmd = null;
@@ -284,6 +333,10 @@ public class Customer implements Serializable {
         }
     }
     
+    /**
+     * MODIFIES: none
+     * EFFECTS: attempts to display all information about the order object via it's toString()
+     */
     public void viewOrder(){
         try {
         System.out.println(order.toString());
@@ -293,6 +346,10 @@ public class Customer implements Serializable {
         }
     }
     
+    /**
+     * MODIFIES: none
+     * EFFECTS: attempts to display all information about the order object via it's toString()
+     */
     public void viewCart(){
         try {
         System.out.println(shoppingCart.toString());
@@ -302,6 +359,10 @@ public class Customer implements Serializable {
         }
     }
     
+    /**
+     * MODIFIES: shippingInfo
+     * EFFECT: attempts to change the fields of shippingInfo
+     */
     public void updateProfile(){
         shippingInfo.updateShippingInfo();
     }
